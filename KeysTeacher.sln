@@ -1,0 +1,85 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeysTeacher", "KeysTeacher\KeysTeacher.csproj", "{752C27BA-E092-455F-9B3F-1221E13FAE40}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Support", "Support", "{9C464D04-58FF-4858-91AF-DDA968A99712}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{09BF31EF-1596-4AF6-815C-808BA08CFE04}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProData", "ProData", "{68E6496D-113C-441F-A396-29F38F769280}"
+	ProjectSection(SolutionItems) = preProject
+		Support\Lib\ProData\ProData.Sys.dll = Support\Lib\ProData\ProData.Sys.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{834AFBF9-5FA6-4112-AB42-C567DF38628B}"
+	ProjectSection(SolutionItems) = preProject
+		Support\Scripts\KeysTeacherInst.ssp = Support\Scripts\KeysTeacherInst.ssp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Midi", "Midi", "{426E5C18-6C77-4CD3-9769-26967A08C279}"
+	ProjectSection(SolutionItems) = preProject
+		Support\Lib\Midi\Midi.dll = Support\Lib\Midi\Midi.dll
+		Support\Lib\Midi\Midi.xml = Support\Lib\Midi\Midi.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{E1BF17BC-D2FD-42FB-8DD9-2BAF9C7A1D01}"
+	ProjectSection(SolutionItems) = preProject
+		Support\Docs\Form1.cs = Support\Docs\Form1.cs
+		Support\Docs\LogViewerData.cs = Support\Docs\LogViewerData.cs
+		Support\Docs\Paren.psd = Support\Docs\Paren.psd
+		Support\Docs\Quality.psd = Support\Docs\Quality.psd
+		Support\Docs\WindowPlacement.cs = Support\Docs\WindowPlacement.cs
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sanford.Multimedia.Midi", "SanfordMultimedia\Sanford.Multimedia.Midi.csproj", "{4269C72A-8D3A-4737-8F89-72EAA33EA9E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging", "Logging\Logging.csproj", "{D3F516A3-204D-494D-98EF-E7E7B67D8CE9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{752C27BA-E092-455F-9B3F-1221E13FAE40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{752C27BA-E092-455F-9B3F-1221E13FAE40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{752C27BA-E092-455F-9B3F-1221E13FAE40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{752C27BA-E092-455F-9B3F-1221E13FAE40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4269C72A-8D3A-4737-8F89-72EAA33EA9E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4269C72A-8D3A-4737-8F89-72EAA33EA9E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4269C72A-8D3A-4737-8F89-72EAA33EA9E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4269C72A-8D3A-4737-8F89-72EAA33EA9E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3F516A3-204D-494D-98EF-E7E7B67D8CE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3F516A3-204D-494D-98EF-E7E7B67D8CE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3F516A3-204D-494D-98EF-E7E7B67D8CE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3F516A3-204D-494D-98EF-E7E7B67D8CE9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{09BF31EF-1596-4AF6-815C-808BA08CFE04} = {9C464D04-58FF-4858-91AF-DDA968A99712}
+		{68E6496D-113C-441F-A396-29F38F769280} = {09BF31EF-1596-4AF6-815C-808BA08CFE04}
+		{834AFBF9-5FA6-4112-AB42-C567DF38628B} = {9C464D04-58FF-4858-91AF-DDA968A99712}
+		{426E5C18-6C77-4CD3-9769-26967A08C279} = {09BF31EF-1596-4AF6-815C-808BA08CFE04}
+		{E1BF17BC-D2FD-42FB-8DD9-2BAF9C7A1D01} = {9C464D04-58FF-4858-91AF-DDA968A99712}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://prodatamedia.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = KeysTeacher\\KeysTeacher.csproj
+		SccProjectName1 = KeysTeacher
+		SccLocalPath1 = KeysTeacher
+		SccProjectUniqueName2 = SanfordMultimedia\\Sanford.Multimedia.Midi.csproj
+		SccProjectName2 = SanfordMultimedia
+		SccLocalPath2 = SanfordMultimedia
+		SccProjectUniqueName3 = Logging\\Logging.csproj
+		SccProjectName3 = Logging
+		SccLocalPath3 = Logging
+	EndGlobalSection
+EndGlobal

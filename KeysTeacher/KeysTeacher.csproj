@@ -1,0 +1,550 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{752C27BA-E092-455F-9B3F-1221E13FAE40}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KeysTeacher</RootNamespace>
+    <AssemblyName>KeysTeacher</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>\\wdmycloud\Private\Installs\Apps\ProData\KeysTeacher\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>21</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>F56A0F1849452591AA771588FCE84E0DA1CA52F2</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>KeysTeacher_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=4.1.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.1.1\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppData.cs" />
+    <Compile Include="AppDataMgr.cs" />
+    <Compile Include="Data\IWindowPlacement.cs" />
+    <Compile Include="Globals.cs" />
+    <Compile Include="Controls\ChordEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ChordEditor.Designer.cs">
+      <DependentUpon>ChordEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CirOf5thsCtl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CirOf5thsCtl.Designer.cs">
+      <DependentUpon>CirOf5thsCtl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\IVoicingLibEditor.cs" />
+    <Compile Include="Controls\KeySymbol.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\KeySymbol.Designer.cs">
+      <DependentUpon>KeySymbol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NoteSymbolSm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NoteSymbolSm.Designer.cs">
+      <DependentUpon>NoteSymbolSm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PlayedChordEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\IVoicingLibRepository.cs" />
+    <Compile Include="Data\IVoicingRepository.cs" />
+    <Compile Include="Data\VoicingLibRepository.cs" />
+    <Compile Include="Data\VoicingRepository.cs" />
+    <Compile Include="Data\VoicingTestRepository.cs" />
+    <Compile Include="Data\IVoicingTestRepository.cs" />
+    <Compile Include="Data\WindowPlacement.cs" />
+    <Compile Include="Devices\DeviceChangedArgs.cs" />
+    <Compile Include="Devices\IMidiInDevice.cs" />
+    <Compile Include="Devices\IMidiOutDevice.cs" />
+    <Compile Include="Devices\MidiInDevice.cs" />
+    <Compile Include="Devices\MidiOutDevice.cs" />
+    <Compile Include="Devices\NoteEventArgs.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="HomeControls\HomeControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PianoControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\PianoControl.PianoKey.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\PianoKeyEventArgs.cs" />
+    <Compile Include="HomeControls\IHomeControlBase.cs" />
+    <Compile Include="HomeControls\VoicingListEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HomeControls\VoicingListEditor.Designer.cs">
+      <DependentUpon>VoicingListEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NoteSymbol.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NoteSymbol.Designer.cs">
+      <DependentUpon>NoteSymbol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HomeControlType.cs" />
+    <Compile Include="IAppDataMgr.cs" />
+    <Compile Include="IForm1.cs" />
+    <Compile Include="IMidiDeviceForm.cs" />
+    <Compile Include="KTException.cs" />
+    <Compile Include="MidiDevice.cs" />
+    <Compile Include="Misc\IMsgBox.cs" />
+    <Compile Include="Misc\MsgBox.cs" />
+    <Compile Include="Misc\XmlTools.cs" />
+    <Compile Include="Music\VoicingLib.cs" />
+    <Compile Include="Music\VoicingProgression.cs" />
+    <Compile Include="Music\Voicing.cs" />
+    <Compile Include="Music\PropertyNotifyBase.cs" />
+    <Compile Include="MidiDeviceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MidiDeviceForm.Designer.cs">
+      <DependentUpon>MidiDeviceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Music\Accidental.cs" />
+    <Compile Include="Music\ChordExt.cs" />
+    <Compile Include="Music\PdChord.cs" />
+    <Compile Include="OptionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OptionsForm.Designer.cs">
+      <DependentUpon>OptionsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\Authoring\IVoicingEditorForm.cs" />
+    <Compile Include="Tests\Authoring\IVoicingLibNameForm.cs" />
+    <Compile Include="Tests\Authoring\VoicingLibNameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\Authoring\VoicingLibNameForm.Designer.cs">
+      <DependentUpon>VoicingLibNameForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\IVoicingLibraryForm.cs" />
+    <Compile Include="Tests\SelectVoicingsArgs.cs" />
+    <Compile Include="Tests\Authoring\VoicingLibsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\Authoring\VoicingLibsForm.Designer.cs">
+      <DependentUpon>VoicingLibsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\VoicingTests\EditVoicingTestCompleteArgs.cs" />
+    <Compile Include="Tests\VoicingTests\IVoicingExamForm.cs" />
+    <Compile Include="Tests\VoicingTests\ISystemVoicingLibBuilder.cs" />
+    <Compile Include="Tests\VoicingTests\IVoicingTestResultsForm.cs" />
+    <Compile Include="Tests\VoicingTests\ShowVoicingTestEditorArgs.cs" />
+    <Compile Include="Quick.cs" />
+    <Compile Include="RandomBase.cs" />
+    <Compile Include="Music\KeyForm.cs" />
+    <Compile Include="Music\PdNote.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Music\Key.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controls\VoicingSymbol.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\VoicingSymbol.Designer.cs">
+      <DependentUpon>VoicingSymbol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\VoicingEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\VoicingEditor.Designer.cs">
+      <DependentUpon>VoicingEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\ProgressionTests\ProgExamForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\ProgressionTests\ProgExamForm.Designer.cs">
+      <DependentUpon>ProgExamForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\ProgressionTests\ProgressionsBuilder.cs" />
+    <Compile Include="Tests\ProgressionTests\ProgTest.cs" />
+    <Compile Include="Tests\ProgressionTests\ProgTestSetupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\ProgressionTests\ProgTestSetupForm.designer.cs">
+      <DependentUpon>ProgTestSetupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\ProgressionTests\ProgTestsMgr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tests\ProgressionTests\ProgTestsMgr.Designer.cs">
+      <DependentUpon>ProgTestsMgr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\TestResult.cs" />
+    <Compile Include="Tests\TestStatsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\TestStatsForm.designer.cs">
+      <DependentUpon>TestStatsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\Authoring\VoicingEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\Authoring\VoicingEditorForm.Designer.cs">
+      <DependentUpon>VoicingEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\VoicingTests\IVoicingTestEditor.cs" />
+    <Compile Include="Tests\VoicingTests\IVoicingTestsMgr.cs" />
+    <Compile Include="Tests\VoicingTests\SystemVoicingLibBuilder.cs" />
+    <Compile Include="Tests\VoicingTests\VoicingTestEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tests\VoicingTests\VoicingTestEditor.Designer.cs">
+      <DependentUpon>VoicingTestEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\VoicingTests\VoicingTestsMgr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tests\VoicingTests\VoicingTestsMgr.Designer.cs">
+      <DependentUpon>VoicingTestsMgr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\VoicingTests\VoicingExamForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\VoicingTests\VoicingExamForm.Designer.cs">
+      <DependentUpon>VoicingExamForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\VoicingExamCtl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\VoicingExamCtl.Designer.cs">
+      <DependentUpon>VoicingExamCtl.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Controls\ChordEditor.resx">
+      <DependentUpon>ChordEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\KeySymbol.resx">
+      <DependentUpon>KeySymbol.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NoteSymbolSm.resx">
+      <DependentUpon>NoteSymbolSm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\VoicingEditor.resx">
+      <DependentUpon>VoicingEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\VoicingExamCtl.resx">
+      <DependentUpon>VoicingExamCtl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeControls\VoicingListEditor.resx">
+      <DependentUpon>VoicingListEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MidiDeviceForm.resx">
+      <DependentUpon>MidiDeviceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NoteSymbol.resx">
+      <DependentUpon>NoteSymbol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OptionsForm.resx">
+      <DependentUpon>OptionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ChordSymbol.resx">
+      <DependentUpon>ChordSymbol.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Controls\VoicingSymbol.resx">
+      <DependentUpon>VoicingSymbol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Authoring\VoicingLibNameForm.resx">
+      <DependentUpon>VoicingLibNameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\ProgressionTests\ProgExamForm.resx">
+      <DependentUpon>ProgExamForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\ProgressionTests\ProgTestSetupForm.resx">
+      <DependentUpon>ProgTestSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\ProgressionTests\ProgTestsMgr.resx">
+      <DependentUpon>ProgTestsMgr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\TestStatsForm.resx">
+      <DependentUpon>TestStatsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Authoring\VoicingEditorForm.resx">
+      <DependentUpon>VoicingEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Authoring\VoicingLibsForm.resx">
+      <DependentUpon>VoicingLibsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\VoicingTests\VoicingTestEditor.resx">
+      <DependentUpon>VoicingTestEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\VoicingTests\VoicingTestsMgr.resx">
+      <DependentUpon>VoicingTestsMgr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\VoicingTests\VoicingExamForm.resx">
+      <DependentUpon>VoicingExamForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <Compile Include="PianoControl.Ext.cs" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Controls\ChordSymbol.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ChordSymbol.Designer.cs">
+      <DependentUpon>ChordSymbol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Music\Quality.cs" />
+    <Compile Include="Music\VoicingForm.cs" />
+    <Compile Include="Tests\VoicingTests\VoicingTestResultsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\VoicingTests\VoicingTestResultsForm.Designer.cs">
+      <DependentUpon>VoicingTestResultsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\ExamBase.cs" />
+    <Compile Include="Tests\TestBase.cs" />
+    <Compile Include="Tests\VoicingTests\VoicingTest.cs" />
+    <Compile Include="Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\CirOf5thsCtl.resx">
+      <DependentUpon>CirOf5thsCtl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\VoicingTests\VoicingTestResultsForm.resx">
+      <DependentUpon>VoicingTestResultsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_A.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_Ab.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_Am.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_B.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_Bb.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_Bbm.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_Bm.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_Cs.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_Csm.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_C.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_Cm.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_D.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_Dm.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_E.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_Eb.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_Ebm.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_Em.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_Fs.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_Fsm.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_F.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_Fm.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_Gsm.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_G.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_Gm.gif" />
+    <EmbeddedResource Include="Images\CircleOf5ths\Cir_NoKey.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\correct_48.gif" />
+    <EmbeddedResource Include="Images\wrong_48.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ChordSymbols\ChordSymbol1.gif" />
+    <EmbeddedResource Include="Images\ChordSymbols\ChordSymbol2.gif" />
+    <EmbeddedResource Include="Images\ChordSymbols\ChordSymbol3.gif" />
+    <EmbeddedResource Include="Images\ChordSymbols\ChordSymbol4.gif" />
+    <EmbeddedResource Include="Images\ChordSymbols\ChordSymbol5.gif" />
+    <EmbeddedResource Include="Images\ChordSymbols\ChordSymbol6.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Accidental\Flat.gif" />
+    <EmbeddedResource Include="Images\Accidental\Sharp.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Accidental\Natural.gif" />
+    <EmbeddedResource Include="Images\Quality\Augmented.gif" />
+    <EmbeddedResource Include="Images\Quality\Diminished.gif" />
+    <EmbeddedResource Include="Images\Quality\Dominant7th.gif" />
+    <EmbeddedResource Include="Images\Quality\Major.gif" />
+    <EmbeddedResource Include="Images\Quality\Major7th.gif" />
+    <EmbeddedResource Include="Images\Quality\Minor.gif" />
+    <EmbeddedResource Include="Images\Quality\Minor7th.gif" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Images\AccidentalSm\Flat.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\AccidentalSm\Natural.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\AccidentalSm\Sharp.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\correct_32.png" />
+    <None Include="Images\add_datasource.png" />
+    <None Include="Images\arrow_left.png" />
+    <None Include="Images\arrow_right.png" />
+    <None Include="Images\del_datasource.png" />
+    <None Include="Images\edit_datasource.png" />
+    <Content Include="Images\lparen.gif" />
+    <Content Include="Images\rparen.gif" />
+    <EmbeddedResource Include="Images\wrong_32.png" />
+    <Content Include="Images\correct_24.png" />
+    <Content Include="Images\wrong_24.png" />
+    <Content Include="Images\resume.png" />
+    <Content Include="Images\pause.png" />
+    <Content Include="Images\close.png" />
+    <Content Include="Images\question.png" />
+    <Content Include="Images\cancel.png" />
+    <Content Include="Images\play.png" />
+    <Content Include="Images\slantedline.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Logging\Logging.csproj">
+      <Project>{d3f516a3-204d-494d-98ef-e7e7b67d8ce9}</Project>
+      <Name>Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SanfordMultimedia\Sanford.Multimedia.Midi.csproj">
+      <Project>{4269c72a-8d3a-4737-8f89-72eaa33ea9e1}</Project>
+      <Name>Sanford.Multimedia.Midi</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

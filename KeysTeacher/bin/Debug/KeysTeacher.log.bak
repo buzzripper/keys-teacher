@@ -1,0 +1,54 @@
+2022-01-10 18:58:18,682 [INFO   ] Form1                -------------  Starting application  ------------- 
+2022-01-10 18:58:18,689 [DEBUG  ] Form1                Configuring container... 
+2022-01-10 18:58:18,805 [DEBUG  ] Form1                Starting maing form... 
+2022-01-10 18:58:19,238 [ERROR  ] MidiOutDevice        [SetDeviceFromId] InputDeviceException: A device ID has been used that is out of range for your system. Sanford.Multimedia.Midi.InputDeviceException: A device ID has been used that is out of range for your system.
+   at Sanford.Multimedia.Midi.InputDevice..ctor(Int32 deviceID) in C:\Code\KeysTeacher\SanfordMultimedia\Sanford.Multimedia.Midi\Device Classes\InputDevice Class\InputDevice.Construction.cs:line 62
+   at KeysTeacher.Devices.MidiInDevice.SetDeviceFromId(Int32 deviceId) in C:\Code\KeysTeacher\KeysTeacher\Devices\MidiInDevice.cs:line 97
+
+2022-01-10 18:59:32,847 [INFO   ] Form1                -------------  Starting application  ------------- 
+2022-01-10 18:59:32,854 [DEBUG  ] Form1                Configuring container... 
+2022-01-10 18:59:32,967 [DEBUG  ] Form1                Starting maing form... 
+2022-01-10 18:59:33,442 [ERROR  ] MidiOutDevice        [SetDeviceFromId] InputDeviceException: A device ID has been used that is out of range for your system. Sanford.Multimedia.Midi.InputDeviceException: A device ID has been used that is out of range for your system.
+   at Sanford.Multimedia.Midi.InputDevice..ctor(Int32 deviceID) in C:\Code\KeysTeacher\SanfordMultimedia\Sanford.Multimedia.Midi\Device Classes\InputDevice Class\InputDevice.Construction.cs:line 62
+   at KeysTeacher.Devices.MidiInDevice.SetDeviceFromId(Int32 deviceId) in C:\Code\KeysTeacher\KeysTeacher\Devices\MidiInDevice.cs:line 97
+
+2022-01-10 18:59:41,337 [INFO   ] Form1                -------------  Ending Application  ------------- 
+2022-01-10 19:04:08,347 [INFO   ] Form1                -------------  Starting application  ------------- 
+2022-01-10 19:04:08,355 [DEBUG  ] Form1                Configuring container... 
+2022-01-10 19:04:08,429 [DEBUG  ] Form1                Starting maing form... 
+2022-01-10 19:04:08,866 [ERROR  ] MidiOutDevice        [SetDeviceFromId] InputDeviceException: A device ID has been used that is out of range for your system. Sanford.Multimedia.Midi.InputDeviceException: A device ID has been used that is out of range for your system.
+   at Sanford.Multimedia.Midi.InputDevice..ctor(Int32 deviceID) in C:\Code\KeysTeacher\SanfordMultimedia\Sanford.Multimedia.Midi\Device Classes\InputDevice Class\InputDevice.Construction.cs:line 62
+   at KeysTeacher.Devices.MidiInDevice.SetDeviceFromId(Int32 deviceId) in C:\Code\KeysTeacher\KeysTeacher\Devices\MidiInDevice.cs:line 97
+
+2022-01-10 19:04:35,131 [INFO   ] Form1                -------------  Ending Application  ------------- 
+2022-01-10 19:05:35,567 [INFO   ] Form1                -------------  Starting application  ------------- 
+2022-01-10 19:05:35,575 [DEBUG  ] Form1                Configuring container... 
+2022-01-10 19:05:35,651 [DEBUG  ] Form1                Starting maing form... 
+2022-01-10 19:05:36,009 [ERROR  ] MidiOutDevice        [SetDeviceFromId] InputDeviceException: A device ID has been used that is out of range for your system. Sanford.Multimedia.Midi.InputDeviceException: A device ID has been used that is out of range for your system.
+   at Sanford.Multimedia.Midi.InputDevice..ctor(Int32 deviceID) in C:\Code\KeysTeacher\SanfordMultimedia\Sanford.Multimedia.Midi\Device Classes\InputDevice Class\InputDevice.Construction.cs:line 62
+   at KeysTeacher.Devices.MidiInDevice.SetDeviceFromId(Int32 deviceId) in C:\Code\KeysTeacher\KeysTeacher\Devices\MidiInDevice.cs:line 97
+
+2022-01-10 19:06:22,336 [INFO   ] Form1                -------------  Ending Application  ------------- 
+2022-01-10 19:06:44,728 [INFO   ] Form1                -------------  Starting application  ------------- 
+2022-01-10 19:06:44,738 [DEBUG  ] Form1                Configuring container... 
+2022-01-10 19:06:44,806 [DEBUG  ] Form1                Starting maing form... 
+2022-01-10 19:06:45,227 [ERROR  ] MidiOutDevice        [SetDeviceFromId] InputDeviceException: A device ID has been used that is out of range for your system. Sanford.Multimedia.Midi.InputDeviceException: A device ID has been used that is out of range for your system.
+   at Sanford.Multimedia.Midi.InputDevice..ctor(Int32 deviceID) in C:\Code\KeysTeacher\SanfordMultimedia\Sanford.Multimedia.Midi\Device Classes\InputDevice Class\InputDevice.Construction.cs:line 62
+   at KeysTeacher.Devices.MidiInDevice.SetDeviceFromId(Int32 deviceId) in C:\Code\KeysTeacher\KeysTeacher\Devices\MidiInDevice.cs:line 97
+
+2022-01-10 19:07:35,957 [INFO   ] Form1                -------------  Starting application  ------------- 
+2022-01-10 19:07:35,964 [DEBUG  ] Form1                Configuring container... 
+2022-01-10 19:07:36,033 [DEBUG  ] Form1                Starting maing form... 
+2022-01-10 19:07:36,430 [ERROR  ] MidiOutDevice        [SetDeviceFromId] InputDeviceException: A device ID has been used that is out of range for your system. Sanford.Multimedia.Midi.InputDeviceException: A device ID has been used that is out of range for your system.
+   at Sanford.Multimedia.Midi.InputDevice..ctor(Int32 deviceID) in C:\Code\KeysTeacher\SanfordMultimedia\Sanford.Multimedia.Midi\Device Classes\InputDevice Class\InputDevice.Construction.cs:line 62
+   at KeysTeacher.Devices.MidiInDevice.SetDeviceFromId(Int32 deviceId) in C:\Code\KeysTeacher\KeysTeacher\Devices\MidiInDevice.cs:line 97
+
+2022-01-10 19:07:42,240 [INFO   ] Form1                -------------  Ending Application  ------------- 
+2022-01-10 19:08:01,238 [INFO   ] Form1                -------------  Starting application  ------------- 
+2022-01-10 19:08:01,246 [DEBUG  ] Form1                Configuring container... 
+2022-01-10 19:08:01,308 [DEBUG  ] Form1                Starting maing form... 
+2022-01-10 19:08:01,726 [ERROR  ] MidiOutDevice        [SetDeviceFromId] InputDeviceException: A device ID has been used that is out of range for your system. Sanford.Multimedia.Midi.InputDeviceException: A device ID has been used that is out of range for your system.
+   at Sanford.Multimedia.Midi.InputDevice..ctor(Int32 deviceID) in C:\Code\KeysTeacher\SanfordMultimedia\Sanford.Multimedia.Midi\Device Classes\InputDevice Class\InputDevice.Construction.cs:line 62
+   at KeysTeacher.Devices.MidiInDevice.SetDeviceFromId(Int32 deviceId) in C:\Code\KeysTeacher\KeysTeacher\Devices\MidiInDevice.cs:line 97
+
+2022-01-10 19:08:09,669 [INFO   ] Form1                -------------  Ending Application  ------------- 

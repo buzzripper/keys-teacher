@@ -1,0 +1,27 @@
+sys_sync_version=1.09
+location1=C:\Users\Andy\Documents\Code\Apps\KeysTeacher\bin\Release\
+location2=F:\Install\Studio\Keys Teacher\
+delete_files=0
+confirm_deletes=1
+add_files=1
+check_sub_folders=1
+auto_start=0
+check_actions=0
+silent_mode=0
+exit_on_completion=0
+compare_on_time=1
+adjust_time_hours=0
+adjust_time_mins=0
+log_file_on=0
+log_file_append=0
+log_file_path=
+overwrite_read_only=0
+hide_other_button=0
+copy_attribs=0
+exclusions=
+end_exclusions
+wildcard_exclusions=
+*.manifest
+*.pdb
+*.vshost.exe
+end_wildcard_exclusions
