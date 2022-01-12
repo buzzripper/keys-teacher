@@ -91,9 +91,9 @@ namespace KeysTeacher.Tests.Authoring
 		private void AddNewLib()
 		{
 			if (_libNameForm.Run(null) == DialogResult.OK) {
-				var voicingLib = new VoicingLib();
-				voicingLib.Name = _libNameForm.LibName;
-				_voicingLibRepository.Save(voicingLib);
+				var _selectedLib = new VoicingLib();
+				_selectedLib.Name = _libNameForm.LibName;
+				_voicingLibRepository.Save(_selectedLib);
 
 				_libNames.Add(_libNameForm.LibName);
 				cmbLibNames.SelectedItem = _libNameForm.LibName;
