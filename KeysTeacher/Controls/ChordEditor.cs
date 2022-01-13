@@ -203,6 +203,7 @@ namespace KeysTeacher
 					_extComboBoxes[index].SelectedIndex = 0;
 					EnableExt(index, false);
 				}
+				chordSymbol1.Redraw();
 			}
 		}
 

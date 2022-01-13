@@ -176,14 +176,14 @@ namespace KeysTeacher.Tests.VoicingTests
 			if (this.Test.ExamDurationSecs > 0)
 			{
 				lblExamTimeRemaining.Visible = true;
-				lblExamTimeLbl.Visible = true;
+				//lblExamTimeLbl.Visible = true;
 				lblExamTimeRemaining.Text = Utils.TimeDisplay(this.Test.ExamDurationSecs);
 			}
 			if (this.Test.QuestionDurationSecs > 0)
 			{
-				//lblQuestionTimeRemaining.Visible = true;
-				//lblQuestionTimeLbl.Visible = true;
-				lblQuestionTimeRemaining.Text = Utils.TimeDisplay(this.Test.QuestionDurationSecs);
+                lblQuestionTimeRemaining.Visible = true;
+                //lblQuestionTimeLbl.Visible = true;
+                lblQuestionTimeRemaining.Text = Utils.TimeDisplay(this.Test.QuestionDurationSecs);
 			}
 
 			// Reset test variables

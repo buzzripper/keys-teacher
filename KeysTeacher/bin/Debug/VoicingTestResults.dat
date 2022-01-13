@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfTestResult xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <TestResult>
+    <TestId>1</TestId>
+    <TestName>Voicing Test 1</TestName>
+    <StartTime>2022-01-13T15:40:13.577389-05:00</StartTime>
+    <TotalDurationSecs>145</TotalDurationSecs>
+    <TotalQuestions>1</TotalQuestions>
+    <TotalCorrect>0</TotalCorrect>
+    <WrongAnswerVoicings>
+      <Voicing>
+        <NoteIds>
+          <int>51</int>
+          <int>54</int>
+          <int>56</int>
+          <int>61</int>
+        </NoteIds>
+        <BassNoteId>35</BassNoteId>
+        <Form>A</Form>
+        <Chord>
+          <Note>
+            <Letter>B</Letter>
+            <Accidental>Natural</Accidental>
+          </Note>
+          <Quality>Major</Quality>
+          <ChordExts>
+            <ChordExt>
+              <Degree>0</Degree>
+              <Accidental>Natural</Accidental>
+            </ChordExt>
+            <ChordExt>
+              <Degree>0</Degree>
+              <Accidental>Natural</Accidental>
+            </ChordExt>
+            <ChordExt>
+              <Degree>0</Degree>
+              <Accidental>Natural</Accidental>
+            </ChordExt>
+          </ChordExts>
+        </Chord>
+      </Voicing>
+    </WrongAnswerVoicings>
+    <AddWrongAnswersToErrorsTest>false</AddWrongAnswersToErrorsTest>
+  </TestResult>
+</ArrayOfTestResult>

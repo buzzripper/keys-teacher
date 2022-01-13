@@ -31,7 +31,10 @@ namespace KeysTeacher
 
 		public DialogResult Run()
 		{
-			foreach(var name in _midiInDevice.GetDeviceNames())
+			lbxInput.Items.Clear();
+			lbxOutput.Items.Clear();
+
+			foreach (var name in _midiInDevice.GetDeviceNames())
 				lbxInput.Items.Add(name);
 			if (_midiInDevice.DeviceId >= 0 && _midiInDevice.DeviceId < lbxInput.Items.Count)
 				lbxInput.SelectedIndex = _midiInDevice.DeviceId;

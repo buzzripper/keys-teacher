@@ -14,7 +14,6 @@ C:\Code\keys-teacher\Logging\bin\Debug\Autofac.dll
 C:\Code\keys-teacher\Logging\bin\Debug\log4net.dll
 C:\Code\keys-teacher\Logging\bin\Debug\Autofac.xml
 C:\Code\keys-teacher\Logging\bin\Debug\log4net.xml
-C:\Code\keys-teacher\Logging\obj\Debug\Logging.csproj.AssemblyReference.cache
 C:\Code\keys-teacher\Logging\obj\Debug\Logging.csproj.CoreCompileInputs.cache
 C:\Code\keys-teacher\Logging\obj\Debug\Logging.csproj.CopyComplete
 C:\Code\keys-teacher\Logging\obj\Debug\ProDataMedia.Logging.dll

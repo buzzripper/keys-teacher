@@ -13,7 +13,6 @@ namespace KeysTeacher
 
 		private PdChord _chord;
 		private readonly Dictionary<Quality, Bitmap> _qualityImgs = new Dictionary<Quality, Bitmap>();
-		//private readonly Dictionary<Accidental, Bitmap> _extAccidentalImgs = new Dictionary<Accidental, Bitmap>();
 		private readonly List<Label> _extLabels = new List<Label>();
 
 		#endregion
@@ -88,15 +87,15 @@ namespace KeysTeacher
 				_extLabels[i].Visible = i < idx;
 				switch (idx) {
 					case 1:
-						_extLabels[0].Top = 13;
+						_extLabels[0].Top = 18;
 						break;
 					case 2:
-						_extLabels[0].Top = 3;
-						_extLabels[1].Top = 20;
+						_extLabels[0].Top = 5;
+						_extLabels[1].Top = 30;
 						break;
 					default:
-						_extLabels[0].Top = -3;
-						_extLabels[1].Top = 13;
+						_extLabels[0].Top = 2;
+						_extLabels[1].Top = 18;
 						break;
 				}
 			}
@@ -119,5 +118,15 @@ namespace KeysTeacher
 
 		private void ChordSymbol_Load(object sender, EventArgs e)
 		{}
+
+        private void picRParen_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void Redraw()
+        {
+			//Populate();
+		}
 	}
 }

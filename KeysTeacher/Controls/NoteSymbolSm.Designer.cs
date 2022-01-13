@@ -27,27 +27,31 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.lblNote = new System.Windows.Forms.Label();
-			this.SuspendLayout();
-			// 
-			// lblNote
-			// 
-			this.lblNote.BackColor = System.Drawing.Color.Transparent;
-			this.lblNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblNote.Location = new System.Drawing.Point(-3, -3);
-			this.lblNote.Name = "lblNote";
-			this.lblNote.Size = new System.Drawing.Size(33, 21);
-			this.lblNote.TabIndex = 1052;
-			this.lblNote.Text = "D#";
-			// 
-			// NoteSymbolSm
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.lblNote);
-			this.Name = "NoteSymbolSm";
-			this.Size = new System.Drawing.Size(28, 18);
-			this.ResumeLayout(false);
+            this.lblNote = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // lblNote
+            // 
+            this.lblNote.AutoSize = true;
+            this.lblNote.BackColor = System.Drawing.Color.Transparent;
+            this.lblNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNote.Location = new System.Drawing.Point(-4, -5);
+            this.lblNote.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNote.Name = "lblNote";
+            this.lblNote.Size = new System.Drawing.Size(63, 40);
+            this.lblNote.TabIndex = 1052;
+            this.lblNote.Text = "D#";
+            // 
+            // NoteSymbolSm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblNote);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Name = "NoteSymbolSm";
+            this.Size = new System.Drawing.Size(56, 34);
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
 

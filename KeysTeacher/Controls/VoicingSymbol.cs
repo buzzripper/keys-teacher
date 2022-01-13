@@ -32,5 +32,10 @@ namespace KeysTeacher
 			chordSymbol1.Chord = this.Voicing.Chord;
 			lblForm.Text = $"{this.Voicing.Form} Form";
 		}
-	}
+
+        private void lblForm_Click(object sender, System.EventArgs e)
+        {
+
+        }
+    }
 }
