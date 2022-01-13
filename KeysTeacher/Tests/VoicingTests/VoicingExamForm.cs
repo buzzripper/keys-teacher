@@ -181,8 +181,8 @@ namespace KeysTeacher.Tests.VoicingTests
 			}
 			if (this.Test.QuestionDurationSecs > 0)
 			{
-				lblQuestionTimeRemaining.Visible = true;
-				lblQuestionTimeLbl.Visible = true;
+				//lblQuestionTimeRemaining.Visible = true;
+				//lblQuestionTimeLbl.Visible = true;
 				lblQuestionTimeRemaining.Text = Utils.TimeDisplay(this.Test.QuestionDurationSecs);
 			}
 

@@ -14,7 +14,7 @@
     <framework targetVersion="4.8" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="KeysTeacher.exe.manifest" size="10483">
+    <dependentAssembly dependencyType="install" codebase="Application Files\KeysTeacher_1_1_0_0\KeysTeacher.exe.manifest" size="10483">
       <assemblyIdentity name="KeysTeacher.exe" version="1.1.0.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
