@@ -37,6 +37,8 @@ namespace KeysTeacher
 			set
 			{
 				_degree = value;
+				if (value == 0)
+					_accidental = Accidental.Natural;
 				FirePropertyChanged("Degree");
 			}
 		}
@@ -47,7 +49,7 @@ namespace KeysTeacher
 			set
 			{
 				_accidental = value;
-				FirePropertyChanged("Degree");
+				FirePropertyChanged("Accidental");
 			}
 		}
 

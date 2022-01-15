@@ -34,6 +34,11 @@ namespace KeysTeacher.Tests.Authoring
 
 		private void VoicingEditorForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
+			this.SaveWindowPosition();
+		}
+
+		private void SaveWindowPosition()
+        {
 			_lastPosition.X = this.Left;
 			_lastPosition.Y = this.Top;
 		}
@@ -75,12 +80,14 @@ namespace KeysTeacher.Tests.Authoring
 			if (!ValidEntries())
 				return;
 
+			this.SaveWindowPosition();
 			this.DialogResult = DialogResult.OK;
 			this.Hide();
 		}
 
 		private void btnCancel_Click(object sender, EventArgs e)
 		{
+			this.SaveWindowPosition();
 			this.Hide();
 		}
 

@@ -18,3 +18,4 @@ C:\Code\keys-teacher\Logging\obj\Debug\Logging.csproj.CoreCompileInputs.cache
 C:\Code\keys-teacher\Logging\obj\Debug\Logging.csproj.CopyComplete
 C:\Code\keys-teacher\Logging\obj\Debug\ProDataMedia.Logging.dll
 C:\Code\keys-teacher\Logging\obj\Debug\ProDataMedia.Logging.pdb
+C:\Code\keys-teacher\Logging\obj\Debug\Logging.csproj.AssemblyReference.cache

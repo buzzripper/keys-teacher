@@ -63,7 +63,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(232, 46);
+            this.label2.Location = new System.Drawing.Point(233, 46);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 20);
@@ -97,7 +97,7 @@
             // 
             this.ckbExt1.AutoSize = true;
             this.ckbExt1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ckbExt1.Location = new System.Drawing.Point(244, 85);
+            this.ckbExt1.Location = new System.Drawing.Point(245, 82);
             this.ckbExt1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ckbExt1.Name = "ckbExt1";
             this.ckbExt1.Size = new System.Drawing.Size(75, 24);
@@ -110,7 +110,7 @@
             // 
             this.ckbExt2.AutoSize = true;
             this.ckbExt2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ckbExt2.Location = new System.Drawing.Point(244, 118);
+            this.ckbExt2.Location = new System.Drawing.Point(245, 115);
             this.ckbExt2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ckbExt2.Name = "ckbExt2";
             this.ckbExt2.Size = new System.Drawing.Size(75, 24);
@@ -123,7 +123,7 @@
             // 
             this.ckbExt3.AutoSize = true;
             this.ckbExt3.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ckbExt3.Location = new System.Drawing.Point(244, 152);
+            this.ckbExt3.Location = new System.Drawing.Point(245, 149);
             this.ckbExt3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ckbExt3.Name = "ckbExt3";
             this.ckbExt3.Size = new System.Drawing.Size(75, 24);
@@ -146,7 +146,7 @@
             // numExt1
             // 
             this.numExt1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.numExt1.Location = new System.Drawing.Point(335, 80);
+            this.numExt1.Location = new System.Drawing.Point(338, 80);
             this.numExt1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.numExt1.Name = "numExt1";
             this.numExt1.Size = new System.Drawing.Size(54, 26);
@@ -163,7 +163,7 @@
             // 
             this.cmbExt1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbExt1.FormattingEnabled = true;
-            this.cmbExt1.Location = new System.Drawing.Point(401, 78);
+            this.cmbExt1.Location = new System.Drawing.Point(400, 78);
             this.cmbExt1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbExt1.Name = "cmbExt1";
             this.cmbExt1.Size = new System.Drawing.Size(56, 28);
@@ -172,7 +172,7 @@
             // 
             // numExt2
             // 
-            this.numExt2.Location = new System.Drawing.Point(335, 115);
+            this.numExt2.Location = new System.Drawing.Point(338, 115);
             this.numExt2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.numExt2.Name = "numExt2";
             this.numExt2.Size = new System.Drawing.Size(54, 26);
@@ -189,7 +189,7 @@
             // 
             this.cmbExt2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbExt2.FormattingEnabled = true;
-            this.cmbExt2.Location = new System.Drawing.Point(401, 114);
+            this.cmbExt2.Location = new System.Drawing.Point(400, 114);
             this.cmbExt2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbExt2.Name = "cmbExt2";
             this.cmbExt2.Size = new System.Drawing.Size(56, 28);
@@ -198,7 +198,7 @@
             // 
             // numExt3
             // 
-            this.numExt3.Location = new System.Drawing.Point(335, 149);
+            this.numExt3.Location = new System.Drawing.Point(338, 149);
             this.numExt3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.numExt3.Name = "numExt3";
             this.numExt3.Size = new System.Drawing.Size(54, 26);
@@ -215,7 +215,7 @@
             // 
             this.cmbExt3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbExt3.FormattingEnabled = true;
-            this.cmbExt3.Location = new System.Drawing.Point(401, 149);
+            this.cmbExt3.Location = new System.Drawing.Point(400, 149);
             this.cmbExt3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbExt3.Name = "cmbExt3";
             this.cmbExt3.Size = new System.Drawing.Size(56, 28);
@@ -276,7 +276,7 @@
             this.Controls.Add(this.chordSymbol1);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ChordEditor";
-            this.Size = new System.Drawing.Size(470, 186);
+            this.Size = new System.Drawing.Size(469, 186);
             this.BackColorChanged += new System.EventHandler(this.ChordEditor_BackColorChanged);
             this.EnabledChanged += new System.EventHandler(this.ChordEditor_EnabledChanged);
             ((System.ComponentModel.ISupportInitialize)(this.numExt1)).EndInit();
@@ -306,5 +306,5 @@
 		private ChordSymbol chordSymbol1;
 		private System.Windows.Forms.ComboBox cmbBassNotes;
 		private System.Windows.Forms.Label label3;
-	}
+    }
 }
