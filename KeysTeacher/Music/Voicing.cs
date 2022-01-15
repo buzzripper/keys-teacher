@@ -27,6 +27,14 @@ namespace KeysTeacher.Music
 			_form = VoicingForm.None;
 		}
 
+		public void Initialize()
+		{
+			if (_chord != null) {
+				_chord.Initialize();
+				_chord.PropertyChanged += ChordPropertyChanged;
+			}
+		}
+
 		#endregion
 
 		#region Properties
@@ -106,7 +114,7 @@ namespace KeysTeacher.Music
 								BassNoteId = this.BassNoteId
 			                };
 			this.NoteIds.ForEach(ni => clone.NoteIds.Add(ni));
-
+			clone.Initialize();
 			return clone;
 		}
 

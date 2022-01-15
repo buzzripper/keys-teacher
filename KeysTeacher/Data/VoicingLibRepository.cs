@@ -11,177 +11,166 @@ using log4net;
 
 namespace KeysTeacher.Data
 {
-	public class VoicingLibRepository : IVoicingLibRepository
-	{
-		#region Constants
+    public class VoicingLibRepository : IVoicingLibRepository
+    {
+        #region Constants
 
-		private const string VoicingLibsFolder = "VoicingLibs";
-		private const string FileExt = "vlb";
+        private const string VoicingLibsFolder = "VoicingLibs";
+        private const string FileExt = "vlb";
 
-		#endregion
+        #endregion
 
-		#region Fields
+        #region Fields
 
-		private readonly string _dataFolderPath;
-		private List<VoicingLib> _systemLibs;
-		private readonly ILifetimeScope _lifetimeScope;
-		private readonly ILog _log;
+        private readonly string _dataFolderPath;
+        private List<VoicingLib> _systemLibs;
+        private readonly ILifetimeScope _lifetimeScope;
+        private readonly ILog _log;
+        private List<VoicingLib> _voicingLibs;
+        #endregion
 
-		#endregion
+        #region Ctor
 
-		#region Ctor
+        public VoicingLibRepository(ILog log, ILifetimeScope lifetimeScope)
+        {
+            _log = log;
+            _lifetimeScope = lifetimeScope;
 
-		public VoicingLibRepository(ILog log, ILifetimeScope lifetimeScope)
-		{
-			_log = log;
-			_lifetimeScope = lifetimeScope;
+            _dataFolderPath = Path.Combine(Globals.DataRootFolder, VoicingLibsFolder);
+            if (!Directory.Exists(_dataFolderPath))
+                Directory.CreateDirectory(_dataFolderPath);
 
-			_dataFolderPath = Path.Combine(Globals.DataRootFolder, VoicingLibsFolder);
-			if (!Directory.Exists(_dataFolderPath))
-				Directory.CreateDirectory(_dataFolderPath);
+            _systemLibs = BuildSystemLibs();
+            _voicingLibs = this.LoadAllVoicingLibs();
+        }
 
-			_systemLibs = BuildSystemLibs();
-		}
+        #endregion
 
-		#endregion
+        #region Public Methods
 
-		#region Public Methods
+        public List<string> GetAllVoicingLibNames()
+        {
+            return _voicingLibs.Select(vl => vl.Name).ToList();
+        }
 
-		public List<VoicingLib> GetAllVoicingLibs()
-		{
-			return LoadAllVoicingLibs();
-		}
+        public VoicingLib GetVoicingLib(string name)
+        {
+            return LoadVoicingLib(name);
+        }
 
-		public List<string> GetAllVoicingLibNames()
-		{
-			//var allVoicings = new VoicingsBuilder().BuildVoicings();
-			//var vl = new VoicingLib();
-			//vl.Name = "Default";
-			//vl.Voicings.AddRange(allVoicings);
-			//this.Save(vl);
+        public string GetUniqueLibName()
+        {
+            string newLibName;
 
-			return ReadAllVoicingLibNames();
-		}
+            int counter = 0;
+            do {
+                counter++;
+                newLibName = $"Voicing Test {counter}";
+            }
 
-		public VoicingLib GetVoicingLib(string name)
-		{
-			return LoadVoicingLib(name);
-		}
+            while (_voicingLibs.Any(t => string.Compare(t.Name, newLibName, StringComparison.OrdinalIgnoreCase) == 0));
 
-		public string GetUniqueLibName()
-		{
-			string newLibName;
+            return newLibName;
+        }
 
-			int counter = 0;
-			do {
-				counter++;
-				newLibName = $"Voicing Test {counter}";
-			}
-			while (this.GetAllVoicingLibs().Any(t => string.Compare(t.Name, newLibName, StringComparison.OrdinalIgnoreCase) == 0));
+        public bool NameExists(string name)
+        {
+            return this.GetAllVoicingLibNames().Any(n => String.Compare(name, n, StringComparison.OrdinalIgnoreCase) == 0);
+        }
 
-			return newLibName;
-		}
+        public void UpdateName(string oldName, string newName)
+        {
+            var voicingLib = this.LoadVoicingLib(oldName);
+            if (voicingLib == null)
+                return;
 
-		public bool NameExists(string name)
-		{
-			return this.GetAllVoicingLibNames().Any(n => String.Compare(name, n, StringComparison.OrdinalIgnoreCase) == 0);
-		}
+            voicingLib.Name = newName;
+            this.Save(voicingLib);
 
-		public void UpdateName(string oldName, string newName)
-		{
-			var voicingLib = this.LoadVoicingLib(oldName);
-			if (voicingLib == null)
-				return;
+            this.Delete(oldName);
+        }
 
-			voicingLib.Name = newName;
-			this.Save(voicingLib);
+        public void Save(VoicingLib voicingLib)
+        {
+            var serializedTest = XmlTools.Serialize(voicingLib);
 
-			this.Delete(oldName);
-		}
+            var filepath = this.BuildLibFolderPath(voicingLib.Name);
+            if (File.Exists(filepath))
+                File.Delete(filepath);
 
-		public void Save(VoicingLib voicingLib)
-		{
-			var serializedTest = XmlTools.Serialize(voicingLib);
+            File.WriteAllText(filepath, serializedTest);
+        }
 
-			var filepath = this.BuildLibFolderPath(voicingLib.Name);
-			if (File.Exists(filepath))
-				File.Delete(filepath);
+        public void Delete(string name)
+        {
+            var filepath = Path.Combine(_dataFolderPath, $"{name}.{FileExt}");
+            if (File.Exists(filepath))
+                File.Delete(filepath);
+        }
 
-			File.WriteAllText(filepath, serializedTest);
-		}
+        public List<VoicingLib> GetSystemLibs()
+        {
+            return _systemLibs;
+        }
 
-		public void Delete(string name)
-		{
-			var filepath = Path.Combine(_dataFolderPath, $"{name}.{FileExt}");
-			if (File.Exists(filepath))
-				File.Delete(filepath);
-		}
+        #endregion
 
-		public List<VoicingLib> GetSystemLibs()
-		{
-			return _systemLibs;
-		}
+        #region Private Methods
 
-		#endregion
+        private List<VoicingLib> LoadAllVoicingLibs()
+        {
+            var allVoicingLibs = new List<VoicingLib>();
 
-		#region Private Methods
+            foreach (var name in ReadAllVoicingLibNames()) {
+                try {
+                    var voicingLib = LoadVoicingLib(name);
+                    allVoicingLibs.Add(voicingLib);
+                } catch (Exception ex) {
+                    _log.Error($"[GetAllVoicingLibs] {ex.GetType().Name} attempting to load {name}: {ex.Message}", ex);
+                }
+            }
+            return allVoicingLibs;
+        }
 
-		private List<VoicingLib> LoadAllVoicingLibs()
-		{
-			var allVoicingLibs = new List<VoicingLib>();
+        private List<string> ReadAllVoicingLibNames()
+        {
+            return Directory.GetFiles(_dataFolderPath, $"*.{FileExt}").Select(fp => Path.GetFileNameWithoutExtension(fp)).ToList();
+        }
 
-			//DirectoryInfo dirInfo = new DirectoryInfo(_dataFolderPath);
-			//foreach (var fileInfo in dirInfo.GetFiles($"*.{FileExt}", SearchOption.TopDirectoryOnly)) {
-			foreach (var name in ReadAllVoicingLibNames()) {
-				try {
-					var voicingLib = LoadVoicingLib(BuildLibFolderPath(name));
-					allVoicingLibs.Add(voicingLib);
-				}
-				catch (Exception ex) {
-					_log.Error($"[GetAllVoicingLibs] {ex.GetType().Name} attempting to load {name}: {ex.Message}", ex);
-				}
-			}
-			return allVoicingLibs;
-		}
+        private VoicingLib LoadVoicingLib(string name)
+        {
+            var filePath = BuildLibFolderPath(name);
+            if (!File.Exists(filePath))
+                return null;
 
-		private List<string> ReadAllVoicingLibNames()
-		{
-			return Directory.GetFiles(_dataFolderPath, $"*.{FileExt}").Select(fp => Path.GetFileNameWithoutExtension(fp)).ToList();
-		}
+            var fileInfo = new FileInfo(filePath);
+            return LoadVoicingLib(fileInfo);
+        }
 
-		private VoicingLib LoadVoicingLib(string name)
-		{
-			var filePath = BuildLibFolderPath(name);
-			if (!File.Exists(filePath))
-				return null;
+        private VoicingLib LoadVoicingLib(FileInfo fileInfo)
+        {
+            var fileContents = File.ReadAllText(fileInfo.FullName);
 
-			var fileInfo = new FileInfo(filePath);
-			return LoadVoicingLib(fileInfo);
-		}
+            var voicingLib = XmlTools.Deserialize<VoicingLib>(fileContents);
+            voicingLib.Name = Path.GetFileNameWithoutExtension(fileInfo.Name);
+            voicingLib.Initialize();
 
-		private VoicingLib LoadVoicingLib(FileInfo fileInfo)
-		{
-			var fileContents = File.ReadAllText(fileInfo.FullName);
+            return voicingLib;
+        }
 
-			var voicingLib = XmlTools.Deserialize<VoicingLib>(fileContents);
-			voicingLib.Name = Path.GetFileNameWithoutExtension(fileInfo.Name);
+        private string BuildLibFolderPath(string libName)
+        {
+            return Path.Combine(_dataFolderPath, $"{libName}.{FileExt}");
+        }
 
-			return voicingLib;
-		}
+        private List<VoicingLib> BuildSystemLibs()
+        {
+            using (var scope = _lifetimeScope.BeginLifetimeScope()) {
+                var builder = scope.Resolve<ISystemVoicingLibBuilder>();
+                return builder.BuildAllSystemLibs();
+            }
+        }
 
-		private string BuildLibFolderPath(string libName)
-		{
-			return Path.Combine(_dataFolderPath, $"{libName}.{FileExt}");
-		}
-
-		private List<VoicingLib> BuildSystemLibs()
-		{
-			using (var scope = _lifetimeScope.BeginLifetimeScope()) {
-				var builder = scope.Resolve<ISystemVoicingLibBuilder>();
-				return builder.BuildAllSystemLibs();
-			}
-		}
-
-		#endregion
-	}
+        #endregion
+    }
 }

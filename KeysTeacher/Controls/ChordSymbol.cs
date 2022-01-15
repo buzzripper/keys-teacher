@@ -94,7 +94,7 @@ namespace KeysTeacher
 						_extLabels[1].Top = 30;
 						break;
 					default:
-						_extLabels[0].Top = 2;
+						_extLabels[0].Top = -4;
 						_extLabels[1].Top = 18;
 						break;
 				}

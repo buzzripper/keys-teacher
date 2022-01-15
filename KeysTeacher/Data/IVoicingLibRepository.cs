@@ -5,7 +5,6 @@ namespace KeysTeacher.Data
 {
 	public interface IVoicingLibRepository
 	{
-		List<VoicingLib> GetAllVoicingLibs();
 		List<string> GetAllVoicingLibNames();
 		VoicingLib GetVoicingLib(string name);
 		string GetUniqueLibName();

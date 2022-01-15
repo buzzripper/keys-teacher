@@ -46,7 +46,7 @@
             // 
             this.lblExt1.BackColor = System.Drawing.Color.Transparent;
             this.lblExt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExt1.Location = new System.Drawing.Point(153, 2);
+            this.lblExt1.Location = new System.Drawing.Point(139, 2);
             this.lblExt1.Margin = new System.Windows.Forms.Padding(0);
             this.lblExt1.Name = "lblExt1";
             this.lblExt1.Size = new System.Drawing.Size(47, 36);
@@ -58,7 +58,7 @@
             // 
             this.lblExt2.BackColor = System.Drawing.Color.Transparent;
             this.lblExt2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExt2.Location = new System.Drawing.Point(153, 29);
+            this.lblExt2.Location = new System.Drawing.Point(139, 29);
             this.lblExt2.Margin = new System.Windows.Forms.Padding(0);
             this.lblExt2.Name = "lblExt2";
             this.lblExt2.Size = new System.Drawing.Size(47, 36);
@@ -70,10 +70,10 @@
             // 
             this.lblExt3.BackColor = System.Drawing.Color.Transparent;
             this.lblExt3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExt3.Location = new System.Drawing.Point(145, 62);
+            this.lblExt3.Location = new System.Drawing.Point(131, 62);
             this.lblExt3.Margin = new System.Windows.Forms.Padding(0);
             this.lblExt3.Name = "lblExt3";
-            this.lblExt3.Size = new System.Drawing.Size(63, 36);
+            this.lblExt3.Size = new System.Drawing.Size(64, 36);
             this.lblExt3.TabIndex = 1061;
             this.lblExt3.Text = "+13";
             this.lblExt3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -107,7 +107,7 @@
             // lbl7th
             // 
             this.lbl7th.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl7th.Location = new System.Drawing.Point(96, 2);
+            this.lbl7th.Location = new System.Drawing.Point(91, 2);
             this.lbl7th.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl7th.Name = "lbl7th";
             this.lbl7th.Size = new System.Drawing.Size(31, 52);
@@ -118,7 +118,7 @@
             // picLParen
             // 
             this.picLParen.Image = ((System.Drawing.Image)(resources.GetObject("picLParen.Image")));
-            this.picLParen.Location = new System.Drawing.Point(131, 5);
+            this.picLParen.Location = new System.Drawing.Point(121, 5);
             this.picLParen.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.picLParen.Name = "picLParen";
             this.picLParen.Size = new System.Drawing.Size(20, 79);
@@ -129,7 +129,7 @@
             // picRParen
             // 
             this.picRParen.Image = ((System.Drawing.Image)(resources.GetObject("picRParen.Image")));
-            this.picRParen.Location = new System.Drawing.Point(201, 5);
+            this.picRParen.Location = new System.Drawing.Point(187, 5);
             this.picRParen.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.picRParen.Name = "picRParen";
             this.picRParen.Size = new System.Drawing.Size(20, 79);
@@ -163,7 +163,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.nsmBass);
-            this.Controls.Add(this.lbl7th);
             this.Controls.Add(this.picRParen);
             this.Controls.Add(this.picQuality);
             this.Controls.Add(this.noteSymbol1);
@@ -172,9 +171,10 @@
             this.Controls.Add(this.lblExt2);
             this.Controls.Add(this.lblExt1);
             this.Controls.Add(this.lblExt3);
+            this.Controls.Add(this.lbl7th);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ChordSymbol";
-            this.Size = new System.Drawing.Size(226, 135);
+            this.Size = new System.Drawing.Size(215, 135);
             this.Load += new System.EventHandler(this.ChordSymbol_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picQuality)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBassSlash)).EndInit();

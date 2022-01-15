@@ -135,7 +135,7 @@ namespace KeysTeacher
                         SetExtState(i, true, true);
                     } else {
                         _extCheckBoxes[i].Checked = false;
-                        _extNumUpDns[i].Value = i == 0 ? 7 : i == 1 ? 9 : 13;
+                        _extNumUpDns[i].Value = i == 0 ? 5 : i == 1 ? 9 : 13;
                         _extAccCombos[i].SelectedIndex = 0;
                         SetExtState(i, i == 0 ? true : false, false);
                     }
@@ -233,6 +233,7 @@ namespace KeysTeacher
                 } else {
                     SetExtState(0, true, true);
                     SetExtState(1, true, false);
+                    SetExtState(2, false, false);
                     this.Chord.ChordExts[1].Degree = 0;
                 }
             }

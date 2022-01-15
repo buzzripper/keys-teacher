@@ -64,7 +64,7 @@
             // lblForm
             // 
             this.lblForm.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lblForm.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lblForm.BackColor = System.Drawing.Color.Transparent;
             this.lblForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblForm.Location = new System.Drawing.Point(266, 160);
             this.lblForm.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);

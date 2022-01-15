@@ -59,7 +59,7 @@ namespace KeysTeacher
 			try {
 				if (voicing != null) {
 					chordEditor1.Chord = voicing.Chord;
-					lblForm.Text = voicing.Form.ToString();
+					lblForm.Text = voicing.Form != VoicingForm.None ? voicing.Form.ToString() : String.Empty;
 					lblForm.Tag = voicing.Form;
 					pianoControl1.ReleaseAllPianoKeys();
 					voicing.NoteIds.ForEach(noteId => pianoControl1.PressPianoKey(noteId));

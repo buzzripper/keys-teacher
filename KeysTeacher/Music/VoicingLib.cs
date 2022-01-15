@@ -13,6 +13,13 @@ namespace KeysTeacher.Music
 			this.Voicings = new List<Voicing>();
 		}
 
+		public void Initialize()
+        {
+			foreach(var voicing in this.Voicings) {
+				voicing.Initialize();
+            }
+        }
+
 		#endregion
 
 		#region Properties
@@ -21,6 +28,7 @@ namespace KeysTeacher.Music
 		public List<Voicing> Voicings { get; private set; }
 
 		#endregion
+
 
 		public override string ToString()
 		{
