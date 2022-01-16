@@ -33,7 +33,6 @@
             this.lblForm = new System.Windows.Forms.Label();
             this.btnPlay = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.chordEditor1 = new KeysTeacher.ChordEditor();
             this.pianoControl1 = new KeysTeacher.Controls.PianoControl();
             this.SuspendLayout();
@@ -66,7 +65,8 @@
             this.lblForm.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblForm.BackColor = System.Drawing.Color.Transparent;
             this.lblForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblForm.Location = new System.Drawing.Point(266, 160);
+            this.lblForm.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblForm.Location = new System.Drawing.Point(232, 175);
             this.lblForm.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblForm.Name = "lblForm";
             this.lblForm.Size = new System.Drawing.Size(142, 45);
@@ -100,16 +100,6 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(765, 34);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 20);
-            this.label2.TabIndex = 41;
-            this.label2.Text = "label2";
-            // 
             // chordEditor1
             // 
             this.chordEditor1.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -137,7 +127,6 @@
             this.pianoControl1.TabIndex = 35;
             this.pianoControl1.Text = "pianoControl1";
             this.pianoControl1.PianoKeyDown += new System.EventHandler<KeysTeacher.PianoKeyEventArgs>(this.pianoControl1_PianoKeyDown);
-            this.pianoControl1.PianoKeyUp += new System.EventHandler<KeysTeacher.PianoKeyEventArgs>(this.pianoControl1_PianoKeyUp);
             this.pianoControl1.BassKeyDown += new System.EventHandler<KeysTeacher.PianoKeyEventArgs>(this.pianoControl1_BassKeyDown);
             this.pianoControl1.BassKeyUp += new System.EventHandler<KeysTeacher.PianoKeyEventArgs>(this.pianoControl1_BassKeyUp);
             // 
@@ -145,7 +134,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblForm);
             this.Controls.Add(this.chordEditor1);
             this.Controls.Add(this.btnClear);
@@ -159,7 +147,6 @@
             this.EnabledChanged += new System.EventHandler(this.VoicingEditor_EnabledChanged);
             this.Resize += new System.EventHandler(this.VoicingEditor_Resize);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
 		}
 
@@ -172,6 +159,5 @@
 		private System.Windows.Forms.Button btnPlay;
 		private System.Windows.Forms.Button btnClear;
 		private ChordEditor chordEditor1;
-		private System.Windows.Forms.Label label2;
 	}
 }

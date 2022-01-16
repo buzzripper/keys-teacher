@@ -200,6 +200,7 @@ namespace KeysTeacher.Tests.VoicingTests
 			// Send a clone to the editor
 			if (_voicingEditorForm.Run(voicing.Clone())) {
 				voicing.CopyFrom(_voicingEditorForm.Voicing);
+				this.Save();
 				lbxVoicings.ResetBindings();
 			}
 		}

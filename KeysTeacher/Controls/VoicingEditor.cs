@@ -59,21 +59,25 @@ namespace KeysTeacher
 			try {
 				if (voicing != null) {
 					chordEditor1.Chord = voicing.Chord;
-					lblForm.Text = voicing.Form != VoicingForm.None ? voicing.Form.ToString() : String.Empty;
-					lblForm.Tag = voicing.Form;
+					this.SetVoicingFormDisplay(voicing.Form);
 					pianoControl1.ReleaseAllPianoKeys();
 					voicing.NoteIds.ForEach(noteId => pianoControl1.PressPianoKey(noteId));
 					if (voicing.BassNoteId > 0)
 						pianoControl1.PressBassKey(voicing.BassNoteId);
 				} else {
 					chordEditor1.Chord = new PdChord();
-					lblForm.Text = VoicingForm.A.ToString();
-					lblForm.Tag = VoicingForm.A;
+					this.SetVoicingFormDisplay(VoicingForm.None);
 					pianoControl1.ReleaseAllPianoKeys();
 				}
 			} finally {
 				_populating = false;
 			}
+		}
+
+		private void SetVoicingFormDisplay(VoicingForm voicingForm)
+        {
+			lblForm.Text = voicingForm != VoicingForm.None ? voicingForm.ToString() : String.Empty;
+			lblForm.Tag = voicingForm;
 		}
 
 		#endregion
@@ -94,8 +98,7 @@ namespace KeysTeacher
 			chordEditor1.Enabled = this.Enabled;
 			pianoControl1.Enabled = this.Enabled;
 			if (!this.Enabled) {
-				lblForm.Text = string.Empty;
-				cmbVoicingForm.Text = string.Empty;
+				SetVoicingFormDisplay(VoicingForm.None);
 				pianoControl1.ReleaseAllPianoKeys();
 			}
 			_populating = false;
@@ -114,18 +117,9 @@ namespace KeysTeacher
 		void Voicing_PropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
 			if (e.PropertyName == "Form") {
-				lblForm.Text = _voicing.Form.ToString();
-				lblForm.Tag = _voicing.Form;
+				SetVoicingFormDisplay(_voicing.Form);
 				InvokeChangedEvent();
 			}
-		}
-
-		private void pianoControl1_PianoKeyUp(object sender, PianoKeyEventArgs e)
-		{
-			//if (!_populating) {
-			//	_voicing.RemoveNoteId(e.NoteID);
-			//	InvokeChangedEvent();
-			//}
 		}
 
 		private void pianoControl1_PianoKeyDown(object sender, PianoKeyEventArgs e)
@@ -170,16 +164,6 @@ namespace KeysTeacher
 				noteIds.Add(bassNoteID);
 			PlayedChord?.Invoke(this, new PlayedChordEventArgs(noteIds));
 		}
-
-		//public void NoteDown(NoteOnMessage msg)
-		//{
-		//	pianoControl1.TogglePianoKey((int)msg.Pitch);
-		//}
-
-		//public void NoteUp(NoteOffMessage msg)
-		//{
-		//	//pianoControl1.ReleasePianoKey((int)msg.Pitch);
-		//}
 
 		private void btnClear_Click(object sender, EventArgs e)
 		{

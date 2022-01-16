@@ -359,5 +359,12 @@ namespace KeysTeacher.Tests.Authoring
 
 			SaveLib(_selectedLib);
 		}
-	}
+
+        private void btnIncrCopies_Click(object sender, EventArgs e)
+        {
+			if (MessageBox.Show($"Create {numIncrCopies.Value} incremented copies of this voicing?", "Create Incremented Copies", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
+					
+            }
+        }
+    }
 }
