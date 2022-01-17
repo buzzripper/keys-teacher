@@ -56,6 +56,15 @@ namespace KeysTeacher.Tests.VoicingTests
 			this.AnswerNoteIds = new List<int>();
 		}
 
+		private void VoicingExamForm_Load(object sender, EventArgs e)
+		{
+			this.Size = new Size(this.Width + 1, this.Height + 1);
+		}
+
+		private void VoicingExamForm_Shown(object sender, EventArgs e)
+		{
+		}
+
 		#endregion
 
 		#region Properties
@@ -109,41 +118,49 @@ namespace KeysTeacher.Tests.VoicingTests
 				switch (_state)
 				{
 					case ExamState.Running:
-						btnPause.Enabled = _autoContinue;
-						btnResume.Enabled = false;
+						SetPaused(false);
 						btnPlayVoicing.Enabled = false;
 						btnQuit.Enabled = true;
 						break;
 
 					case ExamState.Paused:
-						btnPause.Enabled = false;
-						btnResume.Enabled = true;
+						SetPaused(true);
 						btnPlayVoicing.Enabled = false;
 						btnQuit.Enabled = true;
 						break;
 
 					case ExamState.PausedReviewing:
-						btnPause.Enabled = false;
-						btnResume.Enabled = true;
+						SetPaused(true);
 						btnPlayVoicing.Enabled = true;
 						btnQuit.Enabled = true;
 						break;
 
 					case ExamState.ReviewingAnswer:
-						btnPause.Enabled = _autoContinue;
-						btnResume.Enabled = false;
+						SetPaused(false);
 						btnPlayVoicing.Enabled = true;
 						btnQuit.Enabled = true;
 						break;
 
 					case ExamState.Finished:
+						SetPaused(true);
 						btnPause.Enabled = false;
-						btnResume.Enabled = false;
 						btnPlayVoicing.Enabled = true;
 						btnQuit.Enabled = false;
 						break;
 				}
 			}
+		}
+
+		private void SetPaused(bool isPaused)
+        {
+			if (isPaused) {
+				btnPause.Text = "Resume";
+				btnPause.BackColor = Color.RosyBrown;
+			} else {
+				btnPause.Text = "Pause";
+				btnPause.BackColor = Color.LightSteelBlue;
+			}
+			btnPause.Enabled = true;
 		}
 
 		#endregion
@@ -397,7 +414,7 @@ namespace KeysTeacher.Tests.VoicingTests
 		{
 			timer1.Stop();
 			EnableMidiInput(false);
-			this.State = this.State == ExamState.ReviewingAnswer ? ExamState.PausedReviewing : ExamState.Paused;
+			this.State = (this.State == ExamState.ReviewingAnswer) ? ExamState.PausedReviewing : ExamState.Paused;
 			this.PauseStartTime = DateTime.Now;
 		}
 
@@ -412,7 +429,7 @@ namespace KeysTeacher.Tests.VoicingTests
 			if (this.QuestionTimeout < DateTime.MaxValue)
 				this.PauseStartTime = DateTime.MinValue;
 			EnableMidiInput(true);
-			this.State = this.State == ExamState.PausedReviewing ? ExamState.ReviewingAnswer : ExamState.Running;
+			this.State = (this.State == ExamState.PausedReviewing) ? ExamState.ReviewingAnswer : ExamState.Running;
 			timer1.Start();
 		}
 
@@ -577,12 +594,12 @@ namespace KeysTeacher.Tests.VoicingTests
 
 		private void btnPause_Click(object sender, EventArgs e)
 		{
-			PauseTest();
+			if (this.State == ExamState.Running || this.State == ExamState.ReviewingAnswer) {
+				PauseTest();
+			} else {
+				Resume();
+			}
+				
 		}
-
-		private void btnResume_Click(object sender, EventArgs e)
-		{
-			Resume();
-		}
-	}
+    }
 }

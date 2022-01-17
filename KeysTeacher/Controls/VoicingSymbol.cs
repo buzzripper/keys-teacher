@@ -30,7 +30,7 @@ namespace KeysTeacher
 		private void Populate()
 		{
 			chordSymbol1.Chord = this.Voicing.Chord;
-			lblForm.Text = $"{this.Voicing.Form} Form";
+			lblForm.Text = this.Voicing.Form != VoicingForm.None ? $"{this.Voicing.Form} Form" : string.Empty;
 		}
 
         private void lblForm_Click(object sender, System.EventArgs e)

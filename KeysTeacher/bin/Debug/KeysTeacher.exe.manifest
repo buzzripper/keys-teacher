@@ -54,14 +54,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KeysTeacher.exe" size="1773568">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KeysTeacher.exe" size="1767936">
       <assemblyIdentity name="KeysTeacher" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>i5vrLR/qNtRnCK7jn35zuS79bsHtBOyHaPdq1VfhW1c=</dsig:DigestValue>
+        <dsig:DigestValue>t/4P6xT7K03z50bbmBrKws2sPaCkasyNA63Dwpn1Gmw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -85,7 +85,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>TUDu4WjTsJLPcdpdL/RY7sQ9I/G2EudtDuGMkl2XAB8=</dsig:DigestValue>
+        <dsig:DigestValue>AWsesC+41O5glC8Wof9bd5wfT+xBdXStknBMdAuQjO4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -97,7 +97,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>r/aIrf58l0UpFsgxO+y5AVL/OKhnHnMBgd1wo9Jj3P0=</dsig:DigestValue>
+        <dsig:DigestValue>0jfy48pR+rfet67FmJXjT15ILY/eUUTqD3RnFfwO8ow=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -36,7 +36,7 @@
             this.lblForm.BackColor = System.Drawing.Color.Transparent;
             this.lblForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblForm.ForeColor = System.Drawing.Color.MediumBlue;
-            this.lblForm.Location = new System.Drawing.Point(47, 130);
+            this.lblForm.Location = new System.Drawing.Point(52, 149);
             this.lblForm.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblForm.Name = "lblForm";
             this.lblForm.Size = new System.Drawing.Size(122, 32);
@@ -48,7 +48,6 @@
             // chordSymbol1
             // 
             this.chordSymbol1.BackColor = System.Drawing.SystemColors.Control;
-            this.chordSymbol1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.chordSymbol1.Chord = null;
             this.chordSymbol1.Location = new System.Drawing.Point(3, 2);
             this.chordSymbol1.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
@@ -60,12 +59,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.lblForm);
             this.Controls.Add(this.chordSymbol1);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "VoicingSymbol";
-            this.Size = new System.Drawing.Size(230, 166);
+            this.Size = new System.Drawing.Size(232, 183);
             this.ResumeLayout(false);
 
 		}

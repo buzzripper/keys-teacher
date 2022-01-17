@@ -34,7 +34,6 @@
             this.btnQuit = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnPause = new System.Windows.Forms.Button();
-            this.btnResume = new System.Windows.Forms.Button();
             this.btnPlayVoicing = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.picResult = new System.Windows.Forms.PictureBox();
@@ -56,7 +55,7 @@
             this.lblQuestionTimeRemaining.AutoSize = true;
             this.lblQuestionTimeRemaining.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.lblQuestionTimeRemaining.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuestionTimeRemaining.Location = new System.Drawing.Point(1785, 14);
+            this.lblQuestionTimeRemaining.Location = new System.Drawing.Point(2355, 14);
             this.lblQuestionTimeRemaining.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblQuestionTimeRemaining.Name = "lblQuestionTimeRemaining";
             this.lblQuestionTimeRemaining.Size = new System.Drawing.Size(54, 26);
@@ -70,7 +69,7 @@
             this.lblExamTimeRemaining.AutoSize = true;
             this.lblExamTimeRemaining.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.lblExamTimeRemaining.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExamTimeRemaining.Location = new System.Drawing.Point(1862, 14);
+            this.lblExamTimeRemaining.Location = new System.Drawing.Point(2432, 14);
             this.lblExamTimeRemaining.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblExamTimeRemaining.Name = "lblExamTimeRemaining";
             this.lblExamTimeRemaining.Size = new System.Drawing.Size(54, 26);
@@ -81,13 +80,15 @@
             // btnQuit
             // 
             this.btnQuit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnQuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuit.Image = ((System.Drawing.Image)(resources.GetObject("btnQuit.Image")));
-            this.btnQuit.Location = new System.Drawing.Point(1784, 711);
+            this.btnQuit.Location = new System.Drawing.Point(2114, 682);
             this.btnQuit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(132, 57);
+            this.btnQuit.Size = new System.Drawing.Size(372, 138);
             this.btnQuit.TabIndex = 22;
             this.btnQuit.Text = "I Quit!";
+            this.btnQuit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnQuit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnQuit.UseVisualStyleBackColor = true;
             this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
@@ -97,47 +98,36 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.Silver;
-            this.panel1.Location = new System.Drawing.Point(21, 691);
+            this.panel1.Location = new System.Drawing.Point(21, 693);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1887, 3);
+            this.panel1.Size = new System.Drawing.Size(2457, 0);
             this.panel1.TabIndex = 25;
             // 
             // btnPause
             // 
-            this.btnPause.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnPause.Image = ((System.Drawing.Image)(resources.GetObject("btnPause.Image")));
-            this.btnPause.Location = new System.Drawing.Point(18, 711);
+            this.btnPause.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPause.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnPause.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnPause.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPause.Location = new System.Drawing.Point(18, 682);
             this.btnPause.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnPause.Name = "btnPause";
-            this.btnPause.Size = new System.Drawing.Size(132, 57);
+            this.btnPause.Size = new System.Drawing.Size(2082, 138);
             this.btnPause.TabIndex = 28;
-            this.btnPause.Text = "  Pause";
-            this.btnPause.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnPause.UseVisualStyleBackColor = true;
+            this.btnPause.Text = "Pause";
+            this.btnPause.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPause.UseVisualStyleBackColor = false;
             this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
-            // 
-            // btnResume
-            // 
-            this.btnResume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnResume.Enabled = false;
-            this.btnResume.Image = ((System.Drawing.Image)(resources.GetObject("btnResume.Image")));
-            this.btnResume.Location = new System.Drawing.Point(176, 711);
-            this.btnResume.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnResume.Name = "btnResume";
-            this.btnResume.Size = new System.Drawing.Size(134, 57);
-            this.btnResume.TabIndex = 31;
-            this.btnResume.Text = "Resume";
-            this.btnResume.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnResume.UseVisualStyleBackColor = true;
-            this.btnResume.Click += new System.EventHandler(this.btnResume_Click);
             // 
             // btnPlayVoicing
             // 
+            this.btnPlayVoicing.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPlayVoicing.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnPlayVoicing.Enabled = false;
             this.btnPlayVoicing.Image = ((System.Drawing.Image)(resources.GetObject("btnPlayVoicing.Image")));
-            this.btnPlayVoicing.Location = new System.Drawing.Point(18, 381);
+            this.btnPlayVoicing.Location = new System.Drawing.Point(18, 377);
             this.btnPlayVoicing.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnPlayVoicing.Name = "btnPlayVoicing";
             this.btnPlayVoicing.Size = new System.Drawing.Size(57, 54);
@@ -166,10 +156,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMessage.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessage.ForeColor = System.Drawing.Color.Teal;
-            this.lblMessage.Location = new System.Drawing.Point(332, 722);
+            this.lblMessage.Location = new System.Drawing.Point(283, 637);
             this.lblMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(1443, 35);
+            this.lblMessage.Size = new System.Drawing.Size(2013, 35);
             this.lblMessage.TabIndex = 41;
             this.lblMessage.Text = "lblMessage";
             this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -185,7 +175,7 @@
             this.lblTestName.Location = new System.Drawing.Point(248, 12);
             this.lblTestName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTestName.Name = "lblTestName";
-            this.lblTestName.Size = new System.Drawing.Size(1449, 43);
+            this.lblTestName.Size = new System.Drawing.Size(2019, 43);
             this.lblTestName.TabIndex = 42;
             this.lblTestName.Text = "label1";
             this.lblTestName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -201,7 +191,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1934, 55);
+            this.panel2.Size = new System.Drawing.Size(2504, 55);
             this.panel2.TabIndex = 43;
             // 
             // label1
@@ -210,7 +200,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1842, 14);
+            this.label1.Location = new System.Drawing.Point(2412, 14);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(18, 26);
@@ -222,7 +212,7 @@
             this.panel3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel3.Controls.Add(this.voicingSymbol1);
             this.panel3.Controls.Add(this.picResult);
-            this.panel3.Location = new System.Drawing.Point(721, 98);
+            this.panel3.Location = new System.Drawing.Point(1006, 84);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(528, 229);
             this.panel3.TabIndex = 44;
@@ -238,17 +228,16 @@
             // 
             // pianoControl1
             // 
-            this.pianoControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.pianoControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pianoControl1.BassNoteOnColor = System.Drawing.Color.LightSteelBlue;
             this.pianoControl1.HighNoteID = 92;
-            this.pianoControl1.Location = new System.Drawing.Point(90, 381);
+            this.pianoControl1.Location = new System.Drawing.Point(90, 339);
             this.pianoControl1.LowNoteID = 28;
             this.pianoControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pianoControl1.Name = "pianoControl1";
             this.pianoControl1.NoteOnColor = System.Drawing.Color.DodgerBlue;
-            this.pianoControl1.Size = new System.Drawing.Size(1833, 287);
+            this.pianoControl1.Size = new System.Drawing.Size(2396, 283);
             this.pianoControl1.StickyKeys = false;
             this.pianoControl1.TabIndex = 29;
             this.pianoControl1.Text = "pianoControl1";
@@ -257,11 +246,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1934, 783);
+            this.ClientSize = new System.Drawing.Size(2504, 835);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.btnPlayVoicing);
-            this.Controls.Add(this.btnResume);
             this.Controls.Add(this.pianoControl1);
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.panel1);
@@ -275,6 +263,8 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Voicing Test";
+            this.Load += new System.EventHandler(this.VoicingExamForm_Load);
+            this.Shown += new System.EventHandler(this.VoicingExamForm_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.VoicingExamForm_KeyDown);
             this.Resize += new System.EventHandler(this.VoicingExamForm_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.picResult)).EndInit();
@@ -293,7 +283,6 @@
 		private System.Windows.Forms.Button btnPause;
 		private Controls.PianoControl pianoControl1;
 		private VoicingSymbol voicingSymbol1;
-		private System.Windows.Forms.Button btnResume;
 		private System.Windows.Forms.Button btnPlayVoicing;
 		private System.Windows.Forms.Timer timer1;
 		private System.Windows.Forms.PictureBox picResult;
