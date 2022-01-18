@@ -236,10 +236,10 @@
             // btnIncrCopies
             // 
             this.btnIncrCopies.Enabled = false;
-            this.btnIncrCopies.Location = new System.Drawing.Point(304, 280);
+            this.btnIncrCopies.Location = new System.Drawing.Point(307, 272);
             this.btnIncrCopies.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnIncrCopies.Name = "btnIncrCopies";
-            this.btnIncrCopies.Size = new System.Drawing.Size(135, 50);
+            this.btnIncrCopies.Size = new System.Drawing.Size(135, 64);
             this.btnIncrCopies.TabIndex = 61;
             this.btnIncrCopies.Text = "Incremental Copies";
             this.btnIncrCopies.UseVisualStyleBackColor = true;
