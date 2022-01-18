@@ -130,6 +130,14 @@ namespace KeysTeacher
 			}
 		}
 
+		private void pianoControl1_PianoKeyUp(object sender, PianoKeyEventArgs e)
+		{
+			if (!_populating) {
+				_voicing.RemoveNoteId(e.NoteID);
+				InvokeChangedEvent();
+			}
+		}
+
 		private void pianoControl1_BassKeyDown(object sender, PianoKeyEventArgs e)
 		{
 			if (!_populating) {
