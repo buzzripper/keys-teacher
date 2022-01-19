@@ -12,10 +12,14 @@ namespace KeysTeacher
 		public const string DataFolderName = "Data";
 
 		public static readonly string DataRootFolder;
+		public static readonly string VoicingLibsFolder;
+		public static readonly string VoicingTestsFolder;
 
 		static Globals()
 		{
 			DataRootFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), CompanyName, AppName, DataFolderName);
+			VoicingLibsFolder = Path.Combine(DataRootFolder, "VoicingLibs");
+			VoicingTestsFolder = Path.Combine(DataRootFolder, "VoicingTests");
 		}
 	}
 }

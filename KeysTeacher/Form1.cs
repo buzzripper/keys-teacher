@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 using KeysTeacher.Data;
 using KeysTeacher.Devices;
@@ -10,258 +11,284 @@ using Sanford.Multimedia.Midi;
 
 namespace KeysTeacher
 {
-	public partial class Form1 : Form, IForm1
-	{
-		public static Form1 MainForm;
+    public partial class Form1 : Form, IForm1
+    {
+        public static Form1 MainForm;
 
-		#region Constants
+        #region Constants
 
 
-		#endregion
+        #endregion
 
-		#region Fields
+        #region Fields
 
-		private readonly IMidiInDevice _midiInDevice;
-		private readonly IMidiOutDevice _midiOutDevice;
-		private Dictionary<HomeControlType, IHomeControlBase> _homeControls;
-		private IHomeControlBase _activeHomeControl;
-		private readonly IVoicingTestsMgr _voicingTestsMgr;
-		private readonly IVoicingTestEditor _voicingTestEditor;
-		private readonly ILog _log;
-		private readonly IMidiDeviceForm _midiDeviceForm;
-		private readonly IAppDataMgr _appDataMgr;
-		private readonly IWindowPlacement _windowPlacement;
+        private readonly IMidiInDevice _midiInDevice;
+        private readonly IMidiOutDevice _midiOutDevice;
+        private Dictionary<HomeControlType, IHomeControlBase> _homeControls;
+        private IHomeControlBase _activeHomeControl;
+        private readonly IVoicingTestsMgr _voicingTestsMgr;
+        private readonly IVoicingTestEditor _voicingTestEditor;
+        private readonly ILog _log;
+        private readonly IMidiDeviceForm _midiDeviceForm;
+        private readonly IAppDataMgr _appDataMgr;
+        private readonly IWindowPlacement _windowPlacement;
 
-		#endregion
+        #endregion
 
-		#region Constructors / Initialization / Finalization
+        #region Constructors / Initialization / Finalization
 
-		public Form1(ILog log, IVoicingTestsMgr voicingTestsMgr, IVoicingTestEditor voicingTestEditor, IMidiInDevice midiInDevice, IMidiOutDevice midiOutDevice, IMidiDeviceForm midiDeviceForm, IAppDataMgr appDataMgr, IWindowPlacement windowPlacement)
-		{
-			InitializeComponent();
+        public Form1(ILog log, IVoicingTestsMgr voicingTestsMgr, IVoicingTestEditor voicingTestEditor, IMidiInDevice midiInDevice, IMidiOutDevice midiOutDevice, IMidiDeviceForm midiDeviceForm, IAppDataMgr appDataMgr, IWindowPlacement windowPlacement)
+        {
+            InitializeComponent();
 
-			_log = log;
+            _log = log;
 
-			_voicingTestsMgr = voicingTestsMgr;
-			_voicingTestsMgr.ShowVoicingTestEditor += _voicingTestsMgr_ShowVoicingTestEditor;
+            _voicingTestsMgr = voicingTestsMgr;
+            _voicingTestsMgr.ShowVoicingTestEditor += _voicingTestsMgr_ShowVoicingTestEditor;
 
-			_voicingTestEditor = voicingTestEditor;
-			_midiInDevice = midiInDevice;
-			_midiOutDevice = midiOutDevice;
-			_midiDeviceForm = midiDeviceForm;
-			_appDataMgr = appDataMgr;
-			_windowPlacement = windowPlacement;
-			_voicingTestEditor.EditVoicingTestComplete += VoicingTestEditor_EditVoicingTestComplete;
+            _voicingTestEditor = voicingTestEditor;
+            _midiInDevice = midiInDevice;
+            _midiOutDevice = midiOutDevice;
+            _midiDeviceForm = midiDeviceForm;
+            _appDataMgr = appDataMgr;
+            _windowPlacement = windowPlacement;
+            _voicingTestEditor.EditVoicingTestComplete += VoicingTestEditor_EditVoicingTestComplete;
 
-			MainForm = this;
-		}
+            MainForm = this;
+        }
 
-		protected override void OnLoad(EventArgs e)
-		{
-			try {
-				_appDataMgr.Load();
+        protected override void OnLoad(EventArgs e)
+        {
+            try {
+                _appDataMgr.Load();
 
-				if (!InitializeMidiDevices(_appDataMgr.AppData.InDeviceId, _appDataMgr.AppData.OutDeviceId)) {
-					//MessageBox.Show("Unable to open midi device(s). Shutting down.");
-					//Close();
-					//return;
-				}
+                if (!InitializeMidiDevices(_appDataMgr.AppData.InDeviceId, _appDataMgr.AppData.OutDeviceId)) {
+                    //MessageBox.Show("Unable to open midi device(s). Shutting down.");
+                    //Close();
+                    //return;
+                }
 
-				InitializeHomeControls();
+                InitializeHomeControls();
 
-				ActivateHomeControl(HomeControlType.VoicingTestMgr);
+                ActivateHomeControl(HomeControlType.VoicingTestMgr);
 
-				_windowPlacement.SetPlacement(this.Handle, _appDataMgr.AppData.WindowPlacement);
-			}
-			catch (Exception ex) {
-				MessageBox.Show(string.Format(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Stop));
-				this.Close();
-			}
-		}
+                _windowPlacement.SetPlacement(this.Handle, _appDataMgr.AppData.WindowPlacement);
+            } catch (Exception ex) {
+                MessageBox.Show(string.Format(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Stop));
+                this.Close();
+            }
+        }
 
-		private void Form1_Shown(object sender, EventArgs e)
-		{
-		}
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+        }
 
-		private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			_log.Info("-------------  Ending Application  -------------");
-		}
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _log.Info("-------------  Ending Application  -------------");
+        }
 
-		#region Midi Devices
+        #region Midi Devices
 
-		private bool InitializeMidiDevices(int midiInDeviceId, int midiOutDeviceId)
-		{
-			_midiOutDevice.DeviceChanged += OnMidiOutDeviceChanged;
+        private bool InitializeMidiDevices(int midiInDeviceId, int midiOutDeviceId)
+        {
+            _midiOutDevice.DeviceChanged += OnMidiOutDeviceChanged;
 
-			_midiInDevice.NoteOn += OnNoteOn;
-			_midiInDevice.NoteOff += OnNoteOff;
-			_midiInDevice.DeviceChanged += OnMidiInDeviceChanged;
+            _midiInDevice.NoteOn += OnNoteOn;
+            _midiInDevice.NoteOff += OnNoteOff;
+            _midiInDevice.DeviceChanged += OnMidiInDeviceChanged;
 
-			if (midiInDeviceId < 0 || midiOutDeviceId < 0)
-				return ShowDevicesDialog();
+            if (midiInDeviceId < 0 || midiOutDeviceId < 0)
+                return ShowDevicesDialog();
 
-			if (midiInDeviceId >= 0)
-				_midiInDevice.SetDeviceFromId(midiInDeviceId);
+            if (midiInDeviceId >= 0)
+                _midiInDevice.SetDeviceFromId(midiInDeviceId);
 
-			if (midiOutDeviceId >= 0)
-				_midiOutDevice.SetDeviceFromId(midiOutDeviceId);
+            if (midiOutDeviceId >= 0)
+                _midiOutDevice.SetDeviceFromId(midiOutDeviceId);
 
-			return true;
-		}
+            return true;
+        }
 
-		private bool ShowDevicesDialog()
-		{
-			if (_midiDeviceForm.Run() == DialogResult.OK) {
-				return true;
-			}
-			return false;
-		}
+        private bool ShowDevicesDialog()
+        {
+            if (_midiDeviceForm.Run() == DialogResult.OK) {
+                return true;
+            }
+            return false;
+        }
 
-		private void mnuDevices_Click(object sender, EventArgs e)
-		{
-			ShowDevicesDialog();
-		}
+        private void mnuDevices_Click(object sender, EventArgs e)
+        {
+            ShowDevicesDialog();
+        }
 
-		public void OnMidiInDeviceChanged(object sender, DeviceChangedArgs deviceChangedEventArgs)
-		{
-			stsInput.Text = $"Midi In: {deviceChangedEventArgs.DeviceName}";
-		}
+        public void OnMidiInDeviceChanged(object sender, DeviceChangedArgs deviceChangedEventArgs)
+        {
+            stsInput.Text = $"Midi In: {deviceChangedEventArgs.DeviceName}";
+        }
 
-		public void OnMidiOutDeviceChanged(object sender, DeviceChangedArgs deviceChangedEventArgs)
-		{
-			stsOutput.Text = $"Midi Out: {deviceChangedEventArgs.DeviceName}";
-		}
+        public void OnMidiOutDeviceChanged(object sender, DeviceChangedArgs deviceChangedEventArgs)
+        {
+            stsOutput.Text = $"Midi Out: {deviceChangedEventArgs.DeviceName}";
+        }
 
-		#endregion
+        #endregion
 
-		private void InitializeHomeControls()
-		{
-			_homeControls = new Dictionary<HomeControlType, IHomeControlBase>();
+        private void InitializeHomeControls()
+        {
+            _homeControls = new Dictionary<HomeControlType, IHomeControlBase>();
 
-			// Voicing Tests
-			_homeControls.Add(HomeControlType.VoicingTestMgr, _voicingTestsMgr);
-			_homeControls.Add(HomeControlType.VoicingTestEditor, _voicingTestEditor);
+            // Voicing Tests
+            _homeControls.Add(HomeControlType.VoicingTestMgr, _voicingTestsMgr);
+            _homeControls.Add(HomeControlType.VoicingTestEditor, _voicingTestEditor);
 
-			// Progression Tests
-			//_progTestsMgr = new ProgTestsMgr(this.AppData.ProgTests, new ProgressionsBuilder().BuildProgressions());
-			//_homeControls.Add(nbnProgTests, _progTestsMgr);
+            // Progression Tests
+            //_progTestsMgr = new ProgTestsMgr(this.AppData.ProgTests, new ProgressionsBuilder().BuildProgressions());
+            //_homeControls.Add(nbnProgTests, _progTestsMgr);
 
-			foreach (HomeControlBase homeControl in _homeControls.Values) {
-				homeControl.Visible = false;
-				homeControl.Dock = DockStyle.Fill;
-				homeControl.NeedSaving += OnHomeControlNeedSaving;
-				HomeControlsPnl.Controls.Add(homeControl);
-			}
-		}
+            foreach (HomeControlBase homeControl in _homeControls.Values) {
+                homeControl.Visible = false;
+                homeControl.Dock = DockStyle.Fill;
+                homeControl.NeedSaving += OnHomeControlNeedSaving;
+                HomeControlsPnl.Controls.Add(homeControl);
+            }
+        }
 
-		private void OnHomeControlNeedSaving(object sender, EventArgs e)
-		{
-			_appDataMgr.AppData.InDeviceId = _midiInDevice.DeviceId;
-			_appDataMgr.AppData.OutDeviceId = _midiOutDevice.DeviceId;
-			_appDataMgr.Save();
-		}
+        private void OnHomeControlNeedSaving(object sender, EventArgs e)
+        {
+            _appDataMgr.AppData.InDeviceId = _midiInDevice.DeviceId;
+            _appDataMgr.AppData.OutDeviceId = _midiOutDevice.DeviceId;
+            _appDataMgr.Save();
+        }
 
-		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-		{
-			try {
-				_appDataMgr.AppData.InDeviceId = _midiInDevice.DeviceId;
-				_appDataMgr.AppData.OutDeviceId = _midiOutDevice.DeviceId;
-				_appDataMgr.AppData.WindowPlacement = _windowPlacement.GetPlacementData(this.Handle);
-				_appDataMgr.Save();
-			}
-			catch (Exception ex) {
-				_log.Error(string.Format("[Form1_FormClosing] {0} saving app data: {1}", ex.GetType().Name, ex.Message), ex);
-			}
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try {
+                _appDataMgr.AppData.InDeviceId = _midiInDevice.DeviceId;
+                _appDataMgr.AppData.OutDeviceId = _midiOutDevice.DeviceId;
+                _appDataMgr.AppData.WindowPlacement = _windowPlacement.GetPlacementData(this.Handle);
+                _appDataMgr.Save();
+            } catch (Exception ex) {
+                _log.Error(string.Format("[Form1_FormClosing] {0} saving app data: {1}", ex.GetType().Name, ex.Message), ex);
+            }
 
-			try {
-				_midiInDevice?.Dispose();
-				_midiOutDevice?.Dispose();
-			}
-			catch (Exception ex) {
-				_log.Error($"[Form1_FormClosing] {ex.GetType().Name} closing midi devices: {ex}");
-			}
-		}
+            try {
+                _midiInDevice?.Dispose();
+                _midiOutDevice?.Dispose();
+            } catch (Exception ex) {
+                _log.Error($"[Form1_FormClosing] {ex.GetType().Name} closing midi devices: {ex}");
+            }
+        }
 
-		#endregion
+        #endregion
 
-		#region Properties
+        #region Properties
 
-		public InputDevice InputMidiDevice { get; set; }
+        public InputDevice InputMidiDevice { get; set; }
 
-		public OutputDevice OutputMidiDevice { get; set; }
+        public OutputDevice OutputMidiDevice { get; set; }
 
-		#endregion
+        #endregion
 
-		#region Note Events
+        #region Note Events
 
-		public void OnNoteOn(object sender, NoteEventArgs noteEventArgs)
-		{
-			rbMidiActivity.Checked = true;
-		}
+        public void OnNoteOn(object sender, NoteEventArgs noteEventArgs)
+        {
+            rbMidiActivity.Checked = true;
+        }
 
-		public void OnNoteOff(object sender, NoteEventArgs noteEventArgs)
-		{
-			rbMidiActivity.Checked = false;
-		}
+        public void OnNoteOff(object sender, NoteEventArgs noteEventArgs)
+        {
+            rbMidiActivity.Checked = false;
+        }
 
-		#endregion
+        #endregion
 
-		private void VoicingTestEditor_EditVoicingTestComplete(object sender, EditVoicingTestCompleteArgs e)
-		{
-			//_voicingTestsMgr.EditTestComplete(e.VoicingTest);
-			ActivateHomeControl(HomeControlType.VoicingTestMgr);
-		}
+        private void VoicingTestEditor_EditVoicingTestComplete(object sender, EditVoicingTestCompleteArgs e)
+        {
+            //_voicingTestsMgr.EditTestComplete(e.VoicingTest);
+            ActivateHomeControl(HomeControlType.VoicingTestMgr);
+        }
 
-		#region Navigation
+        #region Navigation
 
-		private void _voicingTestsMgr_ShowVoicingTestEditor(object sender, ShowVoicingTestEditorArgs e)
-		{
-			_voicingTestEditor.Run(e.VoicingTest);
-			ActivateHomeControl(HomeControlType.VoicingTestEditor);
-		}
+        private void _voicingTestsMgr_ShowVoicingTestEditor(object sender, ShowVoicingTestEditorArgs e)
+        {
+            _voicingTestEditor.Run(e.VoicingTest);
+            ActivateHomeControl(HomeControlType.VoicingTestEditor);
+        }
 
-		private void ActivateHomeControl(HomeControlType homeControlType)
-		{
-			foreach (HomeControlType hct in Enum.GetValues(typeof(HomeControlType))) {
-				if (hct == homeControlType) {
-					_activeHomeControl = _homeControls[homeControlType];
-					_activeHomeControl.Activate();
-				}
-				else {
-					if (_homeControls[hct].IsActive) {
-						_homeControls[hct].Deactivate();
-					}
-				}
-			}
-		}
+        private void ActivateHomeControl(HomeControlType homeControlType)
+        {
+            foreach (HomeControlType hct in Enum.GetValues(typeof(HomeControlType))) {
+                if (hct == homeControlType) {
+                    _activeHomeControl = _homeControls[homeControlType];
+                    _activeHomeControl.Activate();
+                } else {
+                    if (_homeControls[hct].IsActive) {
+                        _homeControls[hct].Deactivate();
+                    }
+                }
+            }
+        }
 
-		//private void SelectNavBtn(ToolStripButton navBtn, bool selected)
-		//{
-		//	navBtn.BackColor = selected ? Color.LightGray : Color.WhiteSmoke;
-		//	if (!selected)
-		//		navBtn.Checked = false;
-		//}
+        //private void SelectNavBtn(ToolStripButton navBtn, bool selected)
+        //{
+        //	navBtn.BackColor = selected ? Color.LightGray : Color.WhiteSmoke;
+        //	if (!selected)
+        //		navBtn.Checked = false;
+        //}
 
-		#endregion
+        #endregion
 
-		#region UI Events
+        #region UI Events
 
-		private void Form1_KeyDown(object sender, KeyEventArgs e)
-		{
-			_activeHomeControl?.SendKeyDown(e);
-		}
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            _activeHomeControl?.SendKeyDown(e);
+        }
 
-		#endregion
+        #endregion
 
-		private void mnuOptions_Click(object sender, EventArgs e)
-		{
-			var appDataClone = _appDataMgr.AppData.Clone();
-			using (var optionsForm = new OptionsForm()) {
-				if (optionsForm.Run(this, appDataClone)) {
-					_appDataMgr.AppData.CopyFrom(appDataClone);
-				}
-			}
-		}
-	}
+        private void mnuOptions_Click(object sender, EventArgs e)
+        {
+            var appDataClone = _appDataMgr.AppData.Clone();
+            using (var optionsForm = new OptionsForm()) {
+                if (optionsForm.Run(this, appDataClone)) {
+                    _appDataMgr.AppData.CopyFrom(appDataClone);
+                }
+            }
+        }
+
+        private void mnuBackup_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(_appDataMgr.AppData?.BackupFolder)) {
+                MessageBox.Show(this, "No backup folder set up. Please enter a valid backup folder in Options.", "Backup Folder Missing", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (MessageBox.Show(this, "Backup data now? This will overwrite any existing contents that have the same name.", "Backup", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
+                try {
+                    BackupData(_appDataMgr.AppData.BackupFolder);
+                } catch (Exception ex) {
+                    MessageBox.Show(this, ex.Message, "Backup Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+        }
+
+        private void BackupData(string backupFolder)
+        {
+            if (!Directory.Exists(backupFolder))
+                throw new Exception($"Backup folder {backupFolder} not found.");
+            
+            if (_ap)
+
+        }
+
+        private void mnuRestore_Click(object sender, EventArgs e)
+        {
+        }
+    }
 }

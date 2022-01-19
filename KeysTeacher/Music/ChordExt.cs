@@ -27,8 +27,6 @@ namespace KeysTeacher
 			_accidental = accidental;
 		}
 
-
-
 		#endregion
 
 		#region Properties

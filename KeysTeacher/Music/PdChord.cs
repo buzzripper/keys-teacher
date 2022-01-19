@@ -217,6 +217,14 @@ namespace KeysTeacher
                 this.ChordExts[i].CopyFrom(chord.ChordExts[i]);
         }
 
+        public void Increment()
+        {
+             if (this.Note != null)
+                this.Note = PdNote.GetNext(this.Note);
+            if (this.BassNote != null)
+                this.BassNote = PdNote.GetNext(this.BassNote);
+        }
+
         #endregion
     }
 }

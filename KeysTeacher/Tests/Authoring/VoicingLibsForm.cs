@@ -241,7 +241,7 @@ namespace KeysTeacher.Tests.Authoring
             return false;
         }
 
-        privat e void VoicingLibraryForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void VoicingLibraryForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing) {
                 e.Cancel = true;
@@ -344,7 +344,7 @@ namespace KeysTeacher.Tests.Authoring
                 MessageBox.Show($"{ex.GetType().Name} saving test: {ex.Message}", "Error Saving Test", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
-
+        
         private void btnAddSystemLib_Click(object sender, EventArgs e)
         {
             var systemLib = cmbSysVoicingLibs.SelectedItem as VoicingLib;
@@ -367,12 +367,9 @@ namespace KeysTeacher.Tests.Authoring
             if (MessageBox.Show($"Create {numIncrCopies.Value} incremental copies of this voicing?", "Create Incremental Copies", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
                 var voicing = (Voicing)lbxVoicings.SelectedItems[0];
                 for (var i = 0; i < numIncrCopies.Value; i++) {
-                    var newVoicing = voicing.Clone();
-                    if (newVoicing.BassNoteId > 0)
-                        newVoicing.BassNoteId++;
-                    if (newVoicing.Chord.BassNote > 0)
-                        newVoicing.Chord.BassNote++;
-
+                    voicing = voicing.Clone();
+                    voicing.Increment();
+                    _voicings.Add(voicing);
                 }
             }
         }

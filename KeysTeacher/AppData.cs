@@ -19,6 +19,7 @@ namespace KeysTeacher
 		private int _wrongAnswerWaitSecs = 5;
 		private string _windowPlacementStr;
 		private int _noteOnVelocity = 75;
+		private string _backupFolder;
 
 		#endregion
 
@@ -76,6 +77,14 @@ namespace KeysTeacher
 			}
 		}
 
+		public string BackupFolder {
+			get { return _backupFolder; }
+			set {
+				_backupFolder = value;
+				OnPropertyChanged("BackupFolder");
+			}
+		}
+
 		[XmlElement("CDataElement")]
 		public XmlCDataSection WindowPlacement
 		{
@@ -103,7 +112,8 @@ namespace KeysTeacher
 				CorrectAnswerWaitSecs = this.CorrectAnswerWaitSecs,
 				WrongAnswerWaitSecs = this.WrongAnswerWaitSecs,
 				NoteOnVelocity = this.NoteOnVelocity,
-				WindowPlacement = this.WindowPlacement
+				WindowPlacement = this.WindowPlacement,
+				BackupFolder = this.BackupFolder
 			};
 		}
 
@@ -116,6 +126,7 @@ namespace KeysTeacher
 			this.WrongAnswerWaitSecs = appData.WrongAnswerWaitSecs;
 			this.NoteOnVelocity = appData.NoteOnVelocity;
 			this.WindowPlacement = appData.WindowPlacement;
+			this.BackupFolder = appData.BackupFolder;
 		}
 	}
 }

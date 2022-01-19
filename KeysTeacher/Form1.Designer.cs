@@ -33,6 +33,9 @@ namespace KeysTeacher
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPrint = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuBackup = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuRestore = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDevices = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,7 +67,7 @@ namespace KeysTeacher
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(379, 36);
+            this.menuStrip1.Size = new System.Drawing.Size(379, 32);
             this.menuStrip1.TabIndex = 19;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -73,26 +76,48 @@ namespace KeysTeacher
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuPrint,
             this.toolStripSeparator1,
+            this.mnuBackup,
+            this.mnuRestore,
+            this.toolStripMenuItem1,
             this.mnuExit});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(52, 32);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(52, 28);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // mnuPrint
             // 
             this.mnuPrint.Name = "mnuPrint";
-            this.mnuPrint.Size = new System.Drawing.Size(146, 34);
+            this.mnuPrint.Size = new System.Drawing.Size(270, 34);
             this.mnuPrint.Text = "&Print";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(267, 6);
+            // 
+            // mnuBackup
+            // 
+            this.mnuBackup.Name = "mnuBackup";
+            this.mnuBackup.Size = new System.Drawing.Size(270, 34);
+            this.mnuBackup.Text = "Backup";
+            this.mnuBackup.Click += new System.EventHandler(this.mnuBackup_Click);
+            // 
+            // mnuRestore
+            // 
+            this.mnuRestore.Name = "mnuRestore";
+            this.mnuRestore.Size = new System.Drawing.Size(270, 34);
+            this.mnuRestore.Text = "Restore";
+            this.mnuRestore.Click += new System.EventHandler(this.mnuRestore_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(267, 6);
             // 
             // mnuExit
             // 
             this.mnuExit.Name = "mnuExit";
-            this.mnuExit.Size = new System.Drawing.Size(146, 34);
+            this.mnuExit.Size = new System.Drawing.Size(270, 34);
             this.mnuExit.Text = "E&xit";
             // 
             // toolsToolStripMenuItem
@@ -101,7 +126,7 @@ namespace KeysTeacher
             this.mnuDevices,
             this.mnuOptions});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(69, 32);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(69, 28);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // mnuDevices
@@ -123,7 +148,7 @@ namespace KeysTeacher
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(61, 32);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(61, 28);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // aboutToolStripMenuItem
@@ -198,9 +223,9 @@ namespace KeysTeacher
             // HomeControlsPnl
             // 
             this.HomeControlsPnl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.HomeControlsPnl.Location = new System.Drawing.Point(0, 36);
+            this.HomeControlsPnl.Location = new System.Drawing.Point(0, 32);
             this.HomeControlsPnl.Name = "HomeControlsPnl";
-            this.HomeControlsPnl.Size = new System.Drawing.Size(379, 367);
+            this.HomeControlsPnl.Size = new System.Drawing.Size(379, 371);
             this.HomeControlsPnl.TabIndex = 31;
             // 
             // Form1
@@ -254,6 +279,9 @@ namespace KeysTeacher
 		private System.Windows.Forms.ToolStripStatusLabel stsOutput;
 		private System.Windows.Forms.Panel HomeControlsPnl;
 		private System.Windows.Forms.ToolStripMenuItem mnuOptions;
-	}
+        private System.Windows.Forms.ToolStripMenuItem mnuRestore;
+        private System.Windows.Forms.ToolStripMenuItem mnuBackup;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+    }
 }
 
