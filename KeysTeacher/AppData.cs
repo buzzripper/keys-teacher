@@ -19,7 +19,7 @@ namespace KeysTeacher
 		private int _wrongAnswerWaitSecs = 5;
 		private string _windowPlacementStr;
 		private int _noteOnVelocity = 75;
-		private string _backupFolder;
+		private string _mruBackupFolder;
 
 		#endregion
 
@@ -77,11 +77,11 @@ namespace KeysTeacher
 			}
 		}
 
-		public string BackupFolder {
-			get { return _backupFolder; }
+		public string MRUBackupFolder {
+			get { return _mruBackupFolder; }
 			set {
-				_backupFolder = value;
-				OnPropertyChanged("BackupFolder");
+				_mruBackupFolder = value;
+				OnPropertyChanged("MRUBackupFolder");
 			}
 		}
 
@@ -113,7 +113,7 @@ namespace KeysTeacher
 				WrongAnswerWaitSecs = this.WrongAnswerWaitSecs,
 				NoteOnVelocity = this.NoteOnVelocity,
 				WindowPlacement = this.WindowPlacement,
-				BackupFolder = this.BackupFolder
+				MRUBackupFolder = this.MRUBackupFolder
 			};
 		}
 
@@ -126,7 +126,7 @@ namespace KeysTeacher
 			this.WrongAnswerWaitSecs = appData.WrongAnswerWaitSecs;
 			this.NoteOnVelocity = appData.NoteOnVelocity;
 			this.WindowPlacement = appData.WindowPlacement;
-			this.BackupFolder = appData.BackupFolder;
+			this.MRUBackupFolder = appData.MRUBackupFolder;
 		}
 	}
 }

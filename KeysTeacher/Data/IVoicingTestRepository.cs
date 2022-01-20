@@ -8,6 +8,8 @@ namespace KeysTeacher.Data
 	{
 		event EventHandler Changed;
 
+		string DataFolderPath {get;}
+
 		List<VoicingTest> GetAllVoicingTests();
 		VoicingTest GetVoicingTest(int id);
 		int GetNewTestId();

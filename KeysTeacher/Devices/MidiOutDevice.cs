@@ -7,122 +7,120 @@ using Sanford.Multimedia.Midi;
 
 namespace KeysTeacher.Devices
 {
-	public class MidiOutDevice : IMidiOutDevice
-	{
-		#region Events
+    public class MidiOutDevice : IMidiOutDevice
+    {
+        #region Events
 
-		public event EventHandler<DeviceChangedArgs> DeviceChanged;
+        public event EventHandler<DeviceChangedArgs> DeviceChanged;
 
-		#endregion
-		
-		#region Fields
+        #endregion
 
-		private OutputDevice _outputDevice;
-		private readonly ILog _log;
-		private readonly IAppDataMgr _appDataMgr;
+        #region Fields
 
-		#endregion
+        private OutputDevice _outputDevice;
+        private readonly ILog _log;
+        private readonly IAppDataMgr _appDataMgr;
 
-		#region Constructor
+        #endregion
 
-		public MidiOutDevice(ILog log, IAppDataMgr appDataMgr)
-		{
-			_log = log;
-			_appDataMgr = appDataMgr;
-			this.DeviceId = -1;
-		}
+        #region Constructor
 
-		#endregion
+        public MidiOutDevice(ILog log, IAppDataMgr appDataMgr)
+        {
+            _log = log;
+            _appDataMgr = appDataMgr;
+            this.DeviceId = -1;
+        }
 
-		#region IDisposable
+        #endregion
 
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
+        #region IDisposable
 
-		protected virtual void Dispose(bool disposing)
-		{
-			if (disposing) {
-				_outputDevice?.Dispose();
-			}
-		}
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-		~MidiOutDevice()
-		{
-			Dispose(false);
-		}
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing) {
+                _outputDevice?.Dispose();
+            }
+        }
 
-		#endregion
+        ~MidiOutDevice()
+        {
+            Dispose(false);
+        }
 
-		#region Properties
+        #endregion
 
-		public int DeviceId { get; private set; }
-		public string DeviceName { get; set; }
+        #region Properties
 
-		#endregion
+        public int DeviceId { get; private set; }
+        public string DeviceName { get; set; }
 
-		#region Public Methods
+        #endregion
 
-		public List<string> GetDeviceNames()
-		{
-			List<string> deviceNames = new List<string>();
-			for (int i = 0; i < OutputDevice.DeviceCount; i++) {
-				deviceNames.Add(OutputDevice.GetDeviceCapabilities(i).name);
-			}
-			return deviceNames;
-		}
+        #region Public Methods
 
-		public bool SetDeviceFromId(int deviceId)
-		{
-			try {
-				if (_outputDevice != null) {
-					_outputDevice.Dispose();
-					_outputDevice = null;
-				}
+        public List<string> GetDeviceNames()
+        {
+            List<string> deviceNames = new List<string>();
+            for (int i = 0; i < OutputDevice.DeviceCount; i++) {
+                deviceNames.Add(OutputDevice.GetDeviceCapabilities(i).name);
+            }
+            return deviceNames;
+        }
 
-				_outputDevice = new OutputDevice(deviceId);
-				_outputDevice.Error += OnDeviceError;
+        public bool SetDeviceFromId(int deviceId)
+        {
+            try {
+                _outputDevice?.Dispose();
+                _outputDevice = null;
 
-				this.DeviceId = deviceId;
-				this.DeviceName = this.GetDeviceNames()[deviceId];
-				this.InvokeDeviceChanged(this.DeviceId, this.DeviceName);
+                _outputDevice = new OutputDevice(deviceId);
+                _outputDevice.Error += OnDeviceError;
 
-				return true;
+                this.DeviceId = deviceId;
+                this.DeviceName = this.GetDeviceNames()[deviceId];
+                this.InvokeDeviceChanged(this.DeviceId, this.DeviceName);
 
-			} catch (Exception ex) {
-				_log.Error(string.Format("[SetDeviceFromId] {0}: {1}", ex.GetType().Name, ex.Message), ex);
-				return false;
-			}
-		}
+                return true;
 
-		public void SendNoteOn(int noteNumber)
-		{
-			var msg = new ChannelMessage(ChannelCommand.NoteOn, 0, noteNumber, _appDataMgr.AppData.NoteOnVelocity);
-			_outputDevice.Send(msg);
-		}
+            } catch (Exception ex) {
+                _log.Error(string.Format("[SetDeviceFromId] {0}: {1}", ex.GetType().Name, ex.Message), ex);
+                return false;
+            }
+        }
 
-		public void SendNoteOff(int noteNumber)
-		{
-			var msg = new ChannelMessage(ChannelCommand.NoteOff, 0, noteNumber, _appDataMgr.AppData.NoteOnVelocity);
-			_outputDevice.Send(msg);
-		}
-		
-		#endregion
+        public void SendNoteOn(int noteNumber)
+        {
+            var msg = new ChannelMessage(ChannelCommand.NoteOn, 0, noteNumber, _appDataMgr.AppData.NoteOnVelocity);
+            _outputDevice?.Send(msg);
+        }
 
-		#region Private Methods
+        public void SendNoteOff(int noteNumber)
+        {
+            var msg = new ChannelMessage(ChannelCommand.NoteOff, 0, noteNumber, _appDataMgr.AppData.NoteOnVelocity);
+            _outputDevice?.Send(msg);
+        }
 
-		private void InvokeDeviceChanged(int deviceId, string deviceName)
-		{
-			DeviceChanged?.Invoke(this, new DeviceChangedArgs(deviceId, deviceName));
-		}
+        #endregion
 
-		private void OnDeviceError(object sender, ErrorEventArgs e)
-		{
-			MessageBox.Show(e.Error.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-		}
-		
-		#endregion
-	}
+        #region Private Methods
+
+        private void InvokeDeviceChanged(int deviceId, string deviceName)
+        {
+            DeviceChanged?.Invoke(this, new DeviceChangedArgs(deviceId, deviceName));
+        }
+
+        private void OnDeviceError(object sender, ErrorEventArgs e)
+        {
+            MessageBox.Show(e.Error.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        }
+
+        #endregion
+    }
 }

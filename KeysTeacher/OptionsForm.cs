@@ -20,7 +20,6 @@ namespace KeysTeacher
 			numPassDelaySecs.Value = appData.CorrectAnswerWaitSecs;
 			numFailDelaySecs.Value = appData.WrongAnswerWaitSecs;
 			numNoteOnVelocity.Value = appData.NoteOnVelocity;
-			txtBackupFolder.Text = appData.BackupFolder;
 
 			return ShowDialog(owner) == DialogResult.OK;
 		}
@@ -31,7 +30,6 @@ namespace KeysTeacher
 			_appData.CorrectAnswerWaitSecs = (int)numPassDelaySecs.Value;
 			_appData.WrongAnswerWaitSecs = (int)numFailDelaySecs.Value;
 			_appData.NoteOnVelocity = (int)numNoteOnVelocity.Value;
-			_appData.BackupFolder = folderBrowserDlg.SelectedPath;
 
 			this.DialogResult = DialogResult.OK;
 			Hide();

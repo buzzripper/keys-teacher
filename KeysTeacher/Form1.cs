@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Windows.Forms;
 using KeysTeacher.Data;
 using KeysTeacher.Devices;
 using KeysTeacher.HomeControls;
 using KeysTeacher.Tests.VoicingLibs;
+using KeysTeacher.Tests.VoicingTests;
 using log4net;
 using Sanford.Multimedia.Midi;
 
@@ -32,12 +34,14 @@ namespace KeysTeacher
         private readonly IMidiDeviceForm _midiDeviceForm;
         private readonly IAppDataMgr _appDataMgr;
         private readonly IWindowPlacement _windowPlacement;
+        private readonly IVoicingLibRepository _voicingLibRepository;
+        private readonly IVoicingTestRepository _voicingTestRepository;
 
         #endregion
 
         #region Constructors / Initialization / Finalization
 
-        public Form1(ILog log, IVoicingTestsMgr voicingTestsMgr, IVoicingTestEditor voicingTestEditor, IMidiInDevice midiInDevice, IMidiOutDevice midiOutDevice, IMidiDeviceForm midiDeviceForm, IAppDataMgr appDataMgr, IWindowPlacement windowPlacement)
+        public Form1(ILog log, IVoicingTestsMgr voicingTestsMgr, IVoicingTestEditor voicingTestEditor, IMidiInDevice midiInDevice, IMidiOutDevice midiOutDevice, IMidiDeviceForm midiDeviceForm, IAppDataMgr appDataMgr, IWindowPlacement windowPlacement, IVoicingLibRepository voicingLibRepository, IVoicingTestRepository voicingTestRepository)
         {
             InitializeComponent();
 
@@ -53,6 +57,8 @@ namespace KeysTeacher
             _appDataMgr = appDataMgr;
             _windowPlacement = windowPlacement;
             _voicingTestEditor.EditVoicingTestComplete += VoicingTestEditor_EditVoicingTestComplete;
+            _voicingLibRepository = voicingLibRepository;
+            _voicingTestRepository = voicingTestRepository;
 
             MainForm = this;
         }
@@ -73,6 +79,7 @@ namespace KeysTeacher
                 ActivateHomeControl(HomeControlType.VoicingTestMgr);
 
                 _windowPlacement.SetPlacement(this.Handle, _appDataMgr.AppData.WindowPlacement);
+
             } catch (Exception ex) {
                 MessageBox.Show(string.Format(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Stop));
                 this.Close();
@@ -233,13 +240,6 @@ namespace KeysTeacher
             }
         }
 
-        //private void SelectNavBtn(ToolStripButton navBtn, bool selected)
-        //{
-        //	navBtn.BackColor = selected ? Color.LightGray : Color.WhiteSmoke;
-        //	if (!selected)
-        //		navBtn.Checked = false;
-        //}
-
         #endregion
 
         #region UI Events
@@ -263,32 +263,102 @@ namespace KeysTeacher
 
         private void mnuBackup_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(_appDataMgr.AppData?.BackupFolder)) {
-                MessageBox.Show(this, "No backup folder set up. Please enter a valid backup folder in Options.", "Backup Folder Missing", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            if (MessageBox.Show(this, "Backup data now? This will overwrite any existing contents that have the same name.", "Backup", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
+            saveFileDlg.InitialDirectory = _appDataMgr.AppData.MRUBackupFolder;
+            if (saveFileDlg.ShowDialog() == DialogResult.OK) {
                 try {
-                    BackupData(_appDataMgr.AppData.BackupFolder);
+                    BackupData(saveFileDlg.FileName);
+                    _appDataMgr.AppData.MRUBackupFolder = Path.GetDirectoryName(saveFileDlg.FileName);
                 } catch (Exception ex) {
-                    MessageBox.Show(this, ex.Message, "Backup Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, $"Error during backup: {ex.Message}", "Backup Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
         }
 
-        private void BackupData(string backupFolder)
+        private void BackupData(string backupFilepath)
         {
-            if (!Directory.Exists(backupFolder))
-                throw new Exception($"Backup folder {backupFolder} not found.");
-            
-            if (_ap)
+            var srcZipFilepath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString().Substring(10));
+            try {
+                ZipFile.CreateFromDirectory(Globals.DataRootFolder, srcZipFilepath);
+                File.Copy(srcZipFilepath, backupFilepath);
+                MessageBox.Show(this, "Backup completed successfully.", "Backup Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            } finally {
+                File.Delete(srcZipFilepath);
+            }
         }
+
+        private RestoreForm _restoreForm;
 
         private void mnuRestore_Click(object sender, EventArgs e)
         {
+            if (_restoreForm == null)
+                _restoreForm = new RestoreForm();
+
+            if (_restoreForm.Run(this, _appDataMgr.AppData.MRUBackupFolder)) {
+                this.RestoreData(_restoreForm.BackupFilepath, _restoreForm.IncludeSettings, _restoreForm.IncludeVoicingLibs, _restoreForm.IncludeVoicingTests, _restoreForm.IncludeTestResults);
+            }
+        }
+
+        private void RestoreData(string backupFilepath, bool includeSettings, bool includeVoicingLibs, bool includeVoicingTests, bool includeTestResults)
+        {
+            var tempZipFilepath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid().ToString().Substring(10)}.tmp");
+            try {
+                File.Copy(backupFilepath, tempZipFilepath);
+
+                var tempExtractFolder = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid().ToString().Substring(10)}");
+                Directory.CreateDirectory(tempExtractFolder);
+
+                ZipFile.ExtractToDirectory(tempZipFilepath, tempExtractFolder);
+
+                if (includeSettings) {
+                    var src = Path.Combine(tempExtractFolder, AppDataMgr.DataFilename);
+                    if (File.Exists(src)) {
+                        var dest = _appDataMgr.DataFilepath;
+                        File.Copy(src, dest, true);
+                    }
+                }
+
+                if (includeVoicingLibs) {
+                    var srcFolder = Path.Combine(tempExtractFolder, VoicingLibRepository.VoicingLibsFolder);
+                    if (Directory.Exists(srcFolder)) {
+                        var destFolder = _voicingLibRepository.DataFolderPath;
+                        if (Directory.Exists(destFolder)) {
+                            foreach (var srcFilepath in Directory.GetFiles(srcFolder, "*.vlb")) {
+                                var destFilepath = Path.Combine(destFolder, Path.GetFileName(srcFilepath));
+                                File.Copy(srcFilepath, destFilepath, true);
+                            }
+                        }
+                    }
+                }
+
+                if (includeVoicingTests) {
+                    var srcFolder = Path.Combine(tempExtractFolder, VoicingTestRepository.VoicingTestFolder);
+                    if (Directory.Exists(srcFolder)) {
+                        var destFolder = _voicingTestRepository.DataFolderPath;
+                        if (Directory.Exists(destFolder)) {
+                            foreach (var srcFilepath in Directory.GetFiles(srcFolder, "*.vt")) {
+                                var destFilepath = Path.Combine(destFolder, Path.GetFileName(srcFilepath));
+                                File.Copy(srcFilepath, destFilepath, true);
+                            }
+                        }
+                    }
+                }
+
+                if (includeTestResults) {
+                    var src = Path.Combine(tempExtractFolder, VoicingTestsMgr.TestResultsFilename);
+                    if (File.Exists(src)) {
+                        var dest = Path.Combine(Globals.DataRootFolder, VoicingTestsMgr.TestResultsFilename); ;
+                        File.Copy(src, dest, true);
+                    }
+                }
+
+            } catch (Exception ex) {
+                MessageBox.Show(this, $"Error during backup: {ex.Message}", "Backup Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            } finally {
+                File.Delete(tempZipFilepath);
+            }
         }
     }
 }

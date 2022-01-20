@@ -22,7 +22,7 @@ namespace KeysTeacher.Tests.VoicingTests
 
 		#region Constants
 
-		private const string TestResultsFilename = "VoicingTestResults.dat";
+		public const string TestResultsFilename = "VoicingTestResults.dat";
 
 		#endregion
 
@@ -86,6 +86,8 @@ namespace KeysTeacher.Tests.VoicingTests
 		public BindingList<VoicingTest> Tests { get; set; }
 
 		public List<TestResult> TestResults => _testResults ?? (_testResults = LoadTestResults());
+
+		public string TestResultsFilepath => Path.Combine(Globals.DataRootFolder, TestResultsFilename);
 
 		#endregion
 
@@ -246,21 +248,20 @@ namespace KeysTeacher.Tests.VoicingTests
 		private void SaveTestResults()
 		{
 			try {
-				string filepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, TestResultsFilename);
-				Utils.XmlSerializeToFile(this.TestResults, filepath);
+
+				Utils.XmlSerializeToFile(this.TestResults, this.TestResultsFilepath);
 			}
 			catch (Exception ex) {
 				MessageBox.Show(string.Format("Error trying to save test results: {0}", ex.Message));
 			}
 		}
 
-		private static List<TestResult> LoadTestResults()
+		private List<TestResult> LoadTestResults()
 		{
 			List<TestResult> testResults = null;
-			string filepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, TestResultsFilename);
-			if (File.Exists(filepath)) {
+			if (File.Exists(this.TestResultsFilepath)) {
 				try {
-					testResults = Utils.XmlDeserializeFromFile<List<TestResult>>(filepath);
+					testResults = Utils.XmlDeserializeFromFile<List<TestResult>>(this.TestResultsFilepath);
 				}
 				catch { }
 			}

@@ -92,3 +92,4 @@ C:\Code\keys-teacher\KeysTeacher\obj\Debug\KeysTeacher.application
 C:\Code\keys-teacher\KeysTeacher\obj\Debug\KeysTeacher.csproj.CopyComplete
 C:\Code\keys-teacher\KeysTeacher\obj\Debug\KeysTeacher.exe
 C:\Code\keys-teacher\KeysTeacher\obj\Debug\KeysTeacher.pdb
+C:\Code\keys-teacher\KeysTeacher\obj\Debug\KeysTeacher.RestoreForm.resources

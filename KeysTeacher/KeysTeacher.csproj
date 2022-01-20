@@ -36,7 +36,7 @@
     <PublisherName>ProData</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -84,6 +84,7 @@
       <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PresentationFramework.Royale" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -91,6 +92,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Runtime.Serialization">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -195,6 +198,12 @@
     </Compile>
     <Compile Include="OptionsForm.Designer.cs">
       <DependentUpon>OptionsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RestoreForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RestoreForm.Designer.cs">
+      <DependentUpon>RestoreForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Tests\Authoring\IVoicingEditorForm.cs" />
     <Compile Include="Tests\Authoring\IVoicingLibNameForm.cs" />
@@ -350,6 +359,9 @@
     </Compile>
     <EmbeddedResource Include="Controls\VoicingSymbol.resx">
       <DependentUpon>VoicingSymbol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RestoreForm.resx">
+      <DependentUpon>RestoreForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tests\Authoring\VoicingLibNameForm.resx">
       <DependentUpon>VoicingLibNameForm.cs</DependentUpon>

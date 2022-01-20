@@ -54,14 +54,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KeysTeacher.exe" size="1771008">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KeysTeacher.exe" size="1776640">
       <assemblyIdentity name="KeysTeacher" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>kUcdmEDGBEt4W38ZBi6fe6+vX0AP9L8u6rSudi/9IXA=</dsig:DigestValue>
+        <dsig:DigestValue>Zc9S+7lfXAgXVsbyb4zml5aZNfspdF5q5FB9qVN9Wis=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

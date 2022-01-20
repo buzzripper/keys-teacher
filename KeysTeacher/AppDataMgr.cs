@@ -32,6 +32,7 @@ namespace KeysTeacher
 
 		#region Properties
 
+		public string DataFilepath => _dataFilepath;
 		public AppData AppData { get; private set; }
 
 		#endregion

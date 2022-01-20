@@ -15,8 +15,8 @@ namespace KeysTeacher.Data
     {
         #region Constants
 
-        private const string VoicingLibsFolder = "VoicingLibs";
         private const string FileExt = "vlb";
+        public const string VoicingLibsFolder = "VoicingLibs";
 
         #endregion
 
@@ -43,6 +43,12 @@ namespace KeysTeacher.Data
             _systemLibs = BuildSystemLibs();
             _voicingLibs = this.LoadAllVoicingLibs();
         }
+
+        #endregion
+
+        #region Properties
+        
+        public string DataFolderPath => _dataFolderPath;
 
         #endregion
 

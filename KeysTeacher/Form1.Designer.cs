@@ -51,6 +51,7 @@ namespace KeysTeacher
             this.label2 = new System.Windows.Forms.Label();
             this.rbMidiActivity = new System.Windows.Forms.RadioButton();
             this.HomeControlsPnl = new System.Windows.Forms.Panel();
+            this.saveFileDlg = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -67,7 +68,7 @@ namespace KeysTeacher
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(379, 32);
+            this.menuStrip1.Size = new System.Drawing.Size(379, 30);
             this.menuStrip1.TabIndex = 19;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -81,7 +82,7 @@ namespace KeysTeacher
             this.toolStripMenuItem1,
             this.mnuExit});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(52, 28);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(52, 26);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // mnuPrint
@@ -126,7 +127,7 @@ namespace KeysTeacher
             this.mnuDevices,
             this.mnuOptions});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(69, 28);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(69, 26);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // mnuDevices
@@ -148,7 +149,7 @@ namespace KeysTeacher
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(61, 28);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(61, 26);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // aboutToolStripMenuItem
@@ -223,10 +224,15 @@ namespace KeysTeacher
             // HomeControlsPnl
             // 
             this.HomeControlsPnl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.HomeControlsPnl.Location = new System.Drawing.Point(0, 32);
+            this.HomeControlsPnl.Location = new System.Drawing.Point(0, 30);
             this.HomeControlsPnl.Name = "HomeControlsPnl";
-            this.HomeControlsPnl.Size = new System.Drawing.Size(379, 371);
+            this.HomeControlsPnl.Size = new System.Drawing.Size(379, 373);
             this.HomeControlsPnl.TabIndex = 31;
+            // 
+            // saveFileDlg
+            // 
+            this.saveFileDlg.DefaultExt = "ktb";
+            this.saveFileDlg.Filter = "Backup files|*.ktb|All files|*.*";
             // 
             // Form1
             // 
@@ -282,6 +288,7 @@ namespace KeysTeacher
         private System.Windows.Forms.ToolStripMenuItem mnuRestore;
         private System.Windows.Forms.ToolStripMenuItem mnuBackup;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.SaveFileDialog saveFileDlg;
     }
 }
 

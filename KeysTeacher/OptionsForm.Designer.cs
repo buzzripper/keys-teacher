@@ -38,9 +38,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.numFailDelaySecs = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.btnBrowse = new System.Windows.Forms.Button();
-            this.txtBackupFolder = new System.Windows.Forms.TextBox();
             this.folderBrowserDlg = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.numNoteOnVelocity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPassDelaySecs)).BeginInit();
@@ -51,7 +48,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(584, 221);
+            this.btnCancel.Location = new System.Drawing.Point(584, 169);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(130, 48);
@@ -63,7 +60,7 @@
             // btnOk
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOk.Location = new System.Drawing.Point(445, 221);
+            this.btnOk.Location = new System.Drawing.Point(445, 169);
             this.btnOk.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(130, 48);
@@ -166,46 +163,13 @@
             this.label5.TabIndex = 40;
             this.label5.Text = "Wait after a wrong answer:";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(135, 171);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(116, 20);
-            this.label6.TabIndex = 43;
-            this.label6.Text = "Backup Folder:";
-            // 
-            // btnBrowse
-            // 
-            this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowse.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnBrowse.Location = new System.Drawing.Point(673, 167);
-            this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(41, 29);
-            this.btnBrowse.TabIndex = 45;
-            this.btnBrowse.Text = "...";
-            this.btnBrowse.UseVisualStyleBackColor = true;
-            // 
-            // txtBackupFolder
-            // 
-            this.txtBackupFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBackupFolder.Location = new System.Drawing.Point(258, 168);
-            this.txtBackupFolder.Name = "txtBackupFolder";
-            this.txtBackupFolder.Size = new System.Drawing.Size(407, 26);
-            this.txtBackupFolder.TabIndex = 46;
-            // 
             // OptionsForm
             // 
             this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(747, 294);
-            this.Controls.Add(this.txtBackupFolder);
-            this.Controls.Add(this.btnBrowse);
-            this.Controls.Add(this.label6);
+            this.ClientSize = new System.Drawing.Size(747, 242);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.numFailDelaySecs);
             this.Controls.Add(this.label5);
@@ -243,9 +207,6 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.NumericUpDown numFailDelaySecs;
 		private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button btnBrowse;
-        private System.Windows.Forms.TextBox txtBackupFolder;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDlg;
     }
 }

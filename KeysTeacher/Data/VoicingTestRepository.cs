@@ -18,8 +18,8 @@ namespace KeysTeacher.Data
 
 		#region Constants
 
-		private const string VoicingTestFolder = "VoicingTests";
 		private const string FileExt = "vt";
+		public const string VoicingTestFolder = "VoicingTests";
 
 		#endregion
 
@@ -27,7 +27,6 @@ namespace KeysTeacher.Data
 
 		private readonly string _dataFolderPath;
 		private readonly ILog _log;
-		//private List<VoicingTest> _voicingTests;
 
 		#endregion
 
@@ -43,6 +42,8 @@ namespace KeysTeacher.Data
 		}
 
 		#endregion
+
+		public string DataFolderPath => _dataFolderPath;
 
 		private void InvokeChanged()
 		{
