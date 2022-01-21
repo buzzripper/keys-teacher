@@ -114,66 +114,41 @@ namespace KeysTeacher.Tests.VoicingTests
 		{
 			get { return _state; }
 			set {
-				switch (_state)
+				switch (value)
 				{
 					case ExamState.Running:
-						SetStateRunning(_state);
+						SetPaused(false);
+						btnPlayVoicing.Enabled = false;
+						btnQuit.Enabled = true;
 						break;
 
 					case ExamState.Paused:
-						SetStatePaused(_state);
+						SetPaused(true);
+						btnPlayVoicing.Enabled = false;
+						btnQuit.Enabled = true;
 						break;
 
 					case ExamState.ReviewingAnswer:
-						SetStateReviewingPaused(_state);
+						SetPaused(false);
+						btnPlayVoicing.Enabled = true;
+						btnQuit.Enabled = true;
 						break;
 
 					case ExamState.ReviewingPaused:
-						SetStateReviewingAnswer(_state);
+						SetPaused(true);
+						btnPlayVoicing.Enabled = true;
+						btnQuit.Enabled = true;
 						break;
 
 					case ExamState.Finished:
-						SetStateFinished(_state);
+						SetPaused(true);
+						btnPause.Enabled = false;
+						btnPlayVoicing.Enabled = true;
+						btnQuit.Enabled = false;
 						break;
 				}
 				_state = value;
 			}
-		}
-
-		private void SetStateRunning(ExamState prevState)
-        {
-			SetPaused(false);
-			btnPlayVoicing.Enabled = false;
-			btnQuit.Enabled = true;
-		}
-
-		private void SetStatePaused(ExamState prevState)
-		{
-			SetPaused(true);
-			btnPlayVoicing.Enabled = false;
-			btnQuit.Enabled = true;
-		}
-
-		private void SetStateReviewingAnswer(ExamState prevState)
-		{
-			SetPaused(false);
-			btnPlayVoicing.Enabled = true;
-			btnQuit.Enabled = true;
-		}
-
-		private void SetStateReviewingPaused(ExamState prevState)
-		{
-			SetPaused(true);
-			btnPlayVoicing.Enabled = true;
-			btnQuit.Enabled = true;
-		}
-
-		private void SetStateFinished(ExamState prevState)
-		{
-			SetPaused(true);
-			btnPause.Enabled = false;
-			btnPlayVoicing.Enabled = true;
-			btnQuit.Enabled = false;
 		}
 
 		private void SetPaused(bool isPaused)
@@ -356,7 +331,7 @@ namespace KeysTeacher.Tests.VoicingTests
 			if (this.AnswerNoteIds.Count < this.CurrVoicing.NoteIds.Count)
 				return 1; // No wrong notes, but not complete yet
 
-			if (this.Test.InclBassNote && this.PressedBassNoteId == 0)
+			if (this.Test.InclBassNote && (this.PressedBassNoteId == 0 && this.CurrVoicing.BassNoteId > 0))
 				return 1; // No wrong notes, but bass note not selected yet
 
 			return 0; // Correct!
@@ -400,7 +375,6 @@ namespace KeysTeacher.Tests.VoicingTests
 			if (_autoContinue)
 			{
 				this.ReviewTimeout = DateTime.Now.AddSeconds(wasCorrect ? _appDataMgr.AppData.CorrectAnswerWaitSecs : _appDataMgr.AppData.WrongAnswerWaitSecs);
-				pbReview.Value = 100;
 				timerReview.Start();
 			} 
 			else
@@ -569,14 +543,14 @@ namespace KeysTeacher.Tests.VoicingTests
 			}
 			else if (e.KeyCode == Keys.ControlKey)
 			{
-				if (this.State == ExamState.ReviewingAnswer)
+				if (this.State == ExamState.ReviewingAnswer || this.State == ExamState.ReviewingPaused)
 					PlayVoicing(this.CurrVoicing);
 			}
 			else if (e.KeyCode == Keys.Space)
 			{
 				if (this.State == ExamState.ReviewingAnswer)
 				{
-					if (_autoContinue)
+					 if (_autoContinue)
 						this.PauseTest();
 					else
 						EndReviewingAnswer();

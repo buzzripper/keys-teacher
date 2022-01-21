@@ -41,8 +41,6 @@
             this.lblTestName = new System.Windows.Forms.Label();
             this.lblSlash = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pbReview = new System.Windows.Forms.ProgressBar();
-            this.pbQuestion = new System.Windows.Forms.ProgressBar();
             this.timerReview = new System.Windows.Forms.Timer(this.components);
             this.voicingSymbol1 = new KeysTeacher.VoicingSymbol();
             this.pianoControl1 = new KeysTeacher.Controls.PianoControl();
@@ -55,10 +53,10 @@
             this.lblQuestionTimeRemaining.BackColor = System.Drawing.Color.Transparent;
             this.lblQuestionTimeRemaining.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuestionTimeRemaining.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblQuestionTimeRemaining.Location = new System.Drawing.Point(14, 66);
+            this.lblQuestionTimeRemaining.Location = new System.Drawing.Point(112, 9);
             this.lblQuestionTimeRemaining.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblQuestionTimeRemaining.Name = "lblQuestionTimeRemaining";
-            this.lblQuestionTimeRemaining.Size = new System.Drawing.Size(36, 18);
+            this.lblQuestionTimeRemaining.Size = new System.Drawing.Size(54, 26);
             this.lblQuestionTimeRemaining.TabIndex = 16;
             this.lblQuestionTimeRemaining.Text = "3:00";
             this.lblQuestionTimeRemaining.Visible = false;
@@ -72,7 +70,7 @@
             this.lblExamTimeRemaining.Location = new System.Drawing.Point(14, 9);
             this.lblExamTimeRemaining.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblExamTimeRemaining.Name = "lblExamTimeRemaining";
-            this.lblExamTimeRemaining.Size = new System.Drawing.Size(36, 18);
+            this.lblExamTimeRemaining.Size = new System.Drawing.Size(54, 26);
             this.lblExamTimeRemaining.TabIndex = 18;
             this.lblExamTimeRemaining.Text = "3:00";
             this.lblExamTimeRemaining.Visible = false;
@@ -191,10 +189,9 @@
             this.lblSlash.Location = new System.Drawing.Point(76, 9);
             this.lblSlash.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSlash.Name = "lblSlash";
-            this.lblSlash.Size = new System.Drawing.Size(12, 18);
+            this.lblSlash.Size = new System.Drawing.Size(18, 26);
             this.lblSlash.TabIndex = 43;
             this.lblSlash.Text = "/";
-            this.lblSlash.Visible = false;
             // 
             // panel2
             // 
@@ -205,20 +202,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1233, 5);
             this.panel2.TabIndex = 55;
-            // 
-            // pbReview
-            // 
-            this.pbReview.Location = new System.Drawing.Point(19, 352);
-            this.pbReview.Name = "pbReview";
-            this.pbReview.Size = new System.Drawing.Size(100, 14);
-            this.pbReview.TabIndex = 57;
-            // 
-            // pbQuestion
-            // 
-            this.pbQuestion.Location = new System.Drawing.Point(111, 9);
-            this.pbQuestion.Name = "pbQuestion";
-            this.pbQuestion.Size = new System.Drawing.Size(100, 23);
-            this.pbQuestion.TabIndex = 58;
             // 
             // timerReview
             // 
@@ -256,8 +239,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1255, 475);
             this.Controls.Add(this.lblTestName);
-            this.Controls.Add(this.pbQuestion);
-            this.Controls.Add(this.pbReview);
             this.Controls.Add(this.voicingSymbol1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.picResult);
@@ -303,8 +284,6 @@
 		private System.Windows.Forms.Label lblTestName;
         private System.Windows.Forms.Label lblSlash;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ProgressBar pbReview;
-        private System.Windows.Forms.ProgressBar pbQuestion;
         private System.Windows.Forms.Timer timerReview;
     }
 }

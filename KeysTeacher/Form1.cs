@@ -108,8 +108,10 @@ namespace KeysTeacher
             if (midiInDeviceId < 0 || midiOutDeviceId < 0)
                 return ShowDevicesDialog();
 
-            if (midiInDeviceId >= 0)
+            if (midiInDeviceId >= 0) {
                 _midiInDevice.SetDeviceFromId(midiInDeviceId);
+                _midiInDevice.MidiThru = _appDataMgr.AppData.MidiThru;
+            }
 
             if (midiOutDeviceId >= 0)
                 _midiOutDevice.SetDeviceFromId(midiOutDeviceId);
@@ -257,6 +259,8 @@ namespace KeysTeacher
             using (var optionsForm = new OptionsForm()) {
                 if (optionsForm.Run(this, appDataClone)) {
                     _appDataMgr.AppData.CopyFrom(appDataClone);
+                    if (_midiInDevice != null)
+                        _midiInDevice.MidiThru = _appDataMgr.AppData.MidiThru;
                 }
             }
         }

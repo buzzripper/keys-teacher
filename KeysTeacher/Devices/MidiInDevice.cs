@@ -64,7 +64,7 @@ namespace KeysTeacher.Devices
 		#region Properties
 
 		public int DeviceId { get; private set; }
-		public bool MidiThru { get; private set; }
+		public bool MidiThru { get; set; }
 		public string DeviceName { get; set; }
 
 		#endregion
@@ -78,11 +78,6 @@ namespace KeysTeacher.Devices
 				deviceNames.Add(InputDevice.GetDeviceCapabilities(i).name);
 			}
 			return deviceNames;
-		}
-
-		public void SetMidiThru(bool value)
-		{
-			this.MidiThru = value;
 		}
 
 		public bool SetDeviceFromId(int deviceId)
@@ -101,7 +96,7 @@ namespace KeysTeacher.Devices
 
 				this.DeviceId = deviceId;
 				this.DeviceName = this.GetDeviceNames()[deviceId];
-				this.InvokeDeviceChanged(this.DeviceId, this.DeviceName);
+				this.InvokeDeviceChanged(deviceId, this.DeviceName);
 
 				return true;
 			} catch (Exception ex) {

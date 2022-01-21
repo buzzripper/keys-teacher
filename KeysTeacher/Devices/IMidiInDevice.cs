@@ -10,7 +10,7 @@ namespace KeysTeacher.Devices
 		event EventHandler<DeviceChangedArgs> DeviceChanged;
 
 		int DeviceId { get; }
-		bool MidiThru { get; }
+		bool MidiThru { get; set; }
 		string DeviceName { get; set; }
 
 		List<string> GetDeviceNames();
