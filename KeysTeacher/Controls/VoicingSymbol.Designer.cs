@@ -36,10 +36,9 @@
             this.lblForm.BackColor = System.Drawing.Color.Transparent;
             this.lblForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblForm.ForeColor = System.Drawing.Color.MediumBlue;
-            this.lblForm.Location = new System.Drawing.Point(52, 149);
-            this.lblForm.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblForm.Location = new System.Drawing.Point(35, 91);
             this.lblForm.Name = "lblForm";
-            this.lblForm.Size = new System.Drawing.Size(122, 32);
+            this.lblForm.Size = new System.Drawing.Size(81, 21);
             this.lblForm.TabIndex = 1;
             this.lblForm.Text = "lblForm";
             this.lblForm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -49,21 +48,20 @@
             // 
             this.chordSymbol1.BackColor = System.Drawing.SystemColors.Control;
             this.chordSymbol1.Chord = null;
-            this.chordSymbol1.Location = new System.Drawing.Point(3, 2);
-            this.chordSymbol1.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.chordSymbol1.Location = new System.Drawing.Point(2, 1);
+            this.chordSymbol1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chordSymbol1.Name = "chordSymbol1";
-            this.chordSymbol1.Size = new System.Drawing.Size(232, 139);
+            this.chordSymbol1.Size = new System.Drawing.Size(155, 90);
             this.chordSymbol1.TabIndex = 2;
             // 
             // VoicingSymbol
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblForm);
             this.Controls.Add(this.chordSymbol1);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "VoicingSymbol";
-            this.Size = new System.Drawing.Size(232, 183);
+            this.Size = new System.Drawing.Size(155, 115);
             this.ResumeLayout(false);
 
 		}
