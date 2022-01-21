@@ -18,4 +18,3 @@ C:\Code\keys-teacher\SanfordMultimedia\obj\Debug\Sanford.Multimedia.Midi.csproj.
 C:\Code\keys-teacher\SanfordMultimedia\obj\Debug\Sanford.Multimedia.Midi.csproj.CoreCompileInputs.cache
 C:\Code\keys-teacher\SanfordMultimedia\obj\Debug\Sanford.Multimedia.Midi.dll
 C:\Code\keys-teacher\SanfordMultimedia\obj\Debug\Sanford.Multimedia.Midi.pdb
-C:\Code\keys-teacher\SanfordMultimedia\obj\Debug\Sanford.Multimedia.Midi.csproj.AssemblyReference.cache

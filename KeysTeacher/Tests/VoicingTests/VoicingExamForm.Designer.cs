@@ -40,9 +40,12 @@
             this.lblMessage = new System.Windows.Forms.Label();
             this.lblTestName = new System.Windows.Forms.Label();
             this.lblSlash = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.pbReview = new System.Windows.Forms.ProgressBar();
+            this.pbQuestion = new System.Windows.Forms.ProgressBar();
+            this.timerReview = new System.Windows.Forms.Timer(this.components);
             this.voicingSymbol1 = new KeysTeacher.VoicingSymbol();
             this.pianoControl1 = new KeysTeacher.Controls.PianoControl();
-            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.picResult)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,7 +55,7 @@
             this.lblQuestionTimeRemaining.BackColor = System.Drawing.Color.Transparent;
             this.lblQuestionTimeRemaining.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuestionTimeRemaining.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblQuestionTimeRemaining.Location = new System.Drawing.Point(81, 9);
+            this.lblQuestionTimeRemaining.Location = new System.Drawing.Point(14, 66);
             this.lblQuestionTimeRemaining.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblQuestionTimeRemaining.Name = "lblQuestionTimeRemaining";
             this.lblQuestionTimeRemaining.Size = new System.Drawing.Size(36, 18);
@@ -154,7 +157,7 @@
             this.lblMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMessage.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage.ForeColor = System.Drawing.Color.Teal;
+            this.lblMessage.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblMessage.Location = new System.Drawing.Point(285, 343);
             this.lblMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMessage.Name = "lblMessage";
@@ -171,7 +174,7 @@
             this.lblTestName.BackColor = System.Drawing.Color.Transparent;
             this.lblTestName.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTestName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblTestName.Location = new System.Drawing.Point(230, 7);
+            this.lblTestName.Location = new System.Drawing.Point(230, 2);
             this.lblTestName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTestName.Name = "lblTestName";
             this.lblTestName.Size = new System.Drawing.Size(806, 36);
@@ -185,12 +188,41 @@
             this.lblSlash.BackColor = System.Drawing.Color.Transparent;
             this.lblSlash.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSlash.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblSlash.Location = new System.Drawing.Point(59, 9);
+            this.lblSlash.Location = new System.Drawing.Point(76, 9);
             this.lblSlash.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSlash.Name = "lblSlash";
             this.lblSlash.Size = new System.Drawing.Size(12, 18);
             this.lblSlash.TabIndex = 43;
             this.lblSlash.Text = "/";
+            this.lblSlash.Visible = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Location = new System.Drawing.Point(10, 41);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1233, 5);
+            this.panel2.TabIndex = 55;
+            // 
+            // pbReview
+            // 
+            this.pbReview.Location = new System.Drawing.Point(19, 352);
+            this.pbReview.Name = "pbReview";
+            this.pbReview.Size = new System.Drawing.Size(100, 14);
+            this.pbReview.TabIndex = 57;
+            // 
+            // pbQuestion
+            // 
+            this.pbQuestion.Location = new System.Drawing.Point(111, 9);
+            this.pbQuestion.Name = "pbQuestion";
+            this.pbQuestion.Size = new System.Drawing.Size(100, 23);
+            this.pbQuestion.TabIndex = 58;
+            // 
+            // timerReview
+            // 
+            this.timerReview.Tick += new System.EventHandler(this.timerReview_Tick);
             // 
             // voicingSymbol1
             // 
@@ -219,25 +251,17 @@
             this.pianoControl1.TabIndex = 29;
             this.pianoControl1.Text = "pianoControl1";
             // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Location = new System.Drawing.Point(10, 41);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1233, 5);
-            this.panel2.TabIndex = 55;
-            // 
             // VoicingExamForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1255, 475);
+            this.Controls.Add(this.lblTestName);
+            this.Controls.Add(this.pbQuestion);
+            this.Controls.Add(this.pbReview);
             this.Controls.Add(this.voicingSymbol1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.picResult);
             this.Controls.Add(this.lblSlash);
-            this.Controls.Add(this.lblTestName);
             this.Controls.Add(this.lblExamTimeRemaining);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.lblQuestionTimeRemaining);
@@ -279,5 +303,8 @@
 		private System.Windows.Forms.Label lblTestName;
         private System.Windows.Forms.Label lblSlash;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ProgressBar pbReview;
+        private System.Windows.Forms.ProgressBar pbQuestion;
+        private System.Windows.Forms.Timer timerReview;
     }
 }

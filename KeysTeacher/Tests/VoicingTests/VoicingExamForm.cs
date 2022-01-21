@@ -19,7 +19,7 @@ namespace KeysTeacher.Tests.VoicingTests
 			Running,
 			ReviewingAnswer,
 			Paused,
-			PausedReviewing,
+			ReviewingPaused,
 			Finished
 		}
 
@@ -114,41 +114,66 @@ namespace KeysTeacher.Tests.VoicingTests
 		{
 			get { return _state; }
 			set {
-				_state = value;
 				switch (_state)
 				{
 					case ExamState.Running:
-						SetPaused(false);
-						btnPlayVoicing.Enabled = false;
-						btnQuit.Enabled = true;
+						SetStateRunning(_state);
 						break;
 
 					case ExamState.Paused:
-						SetPaused(true);
-						btnPlayVoicing.Enabled = false;
-						btnQuit.Enabled = true;
-						break;
-
-					case ExamState.PausedReviewing:
-						SetPaused(true);
-						btnPlayVoicing.Enabled = true;
-						btnQuit.Enabled = true;
+						SetStatePaused(_state);
 						break;
 
 					case ExamState.ReviewingAnswer:
-						SetPaused(false);
-						btnPlayVoicing.Enabled = true;
-						btnQuit.Enabled = true;
+						SetStateReviewingPaused(_state);
+						break;
+
+					case ExamState.ReviewingPaused:
+						SetStateReviewingAnswer(_state);
 						break;
 
 					case ExamState.Finished:
-						SetPaused(true);
-						btnPause.Enabled = false;
-						btnPlayVoicing.Enabled = true;
-						btnQuit.Enabled = false;
+						SetStateFinished(_state);
 						break;
 				}
+				_state = value;
 			}
+		}
+
+		private void SetStateRunning(ExamState prevState)
+        {
+			SetPaused(false);
+			btnPlayVoicing.Enabled = false;
+			btnQuit.Enabled = true;
+		}
+
+		private void SetStatePaused(ExamState prevState)
+		{
+			SetPaused(true);
+			btnPlayVoicing.Enabled = false;
+			btnQuit.Enabled = true;
+		}
+
+		private void SetStateReviewingAnswer(ExamState prevState)
+		{
+			SetPaused(false);
+			btnPlayVoicing.Enabled = true;
+			btnQuit.Enabled = true;
+		}
+
+		private void SetStateReviewingPaused(ExamState prevState)
+		{
+			SetPaused(true);
+			btnPlayVoicing.Enabled = true;
+			btnQuit.Enabled = true;
+		}
+
+		private void SetStateFinished(ExamState prevState)
+		{
+			SetPaused(true);
+			btnPause.Enabled = false;
+			btnPlayVoicing.Enabled = true;
+			btnQuit.Enabled = false;
 		}
 
 		private void SetPaused(bool isPaused)
@@ -356,7 +381,7 @@ namespace KeysTeacher.Tests.VoicingTests
 				picResult.Image = this.ResultPics[0];
 				Refresh();
 				picResult.Visible = true;
-				StartReviewingAnswer(true);
+				BeginReviewingAnswer(true);
 			}
 			else
 			{
@@ -366,40 +391,33 @@ namespace KeysTeacher.Tests.VoicingTests
 				PlayVoicing(this.CurrVoicing);
 				Refresh();
 				this.TestResult.WrongAnswerVoicings.Add(this.CurrVoicing);
-				StartReviewingAnswer(false);
+				BeginReviewingAnswer(false);
 			}
 		}
 
-		private void StartReviewingAnswer(bool wasCorrect)
+		private void BeginReviewingAnswer(bool wasCorrect)
 		{
 			if (_autoContinue)
 			{
-				if (wasCorrect)
-				{
-					this.ReviewTimeout = DateTime.Now.AddSeconds(_appDataMgr.AppData.CorrectAnswerWaitSecs);
-				}
-				else
-				{
-					if (_autoContinue)
-					{
-						this.ReviewTimeout = DateTime.Now.AddSeconds(_appDataMgr.AppData.WrongAnswerWaitSecs);
-					}
-					else
-					{
-						this.ReviewTimeout = DateTime.MaxValue;
-					}
-				}
-			}
+				this.ReviewTimeout = DateTime.Now.AddSeconds(wasCorrect ? _appDataMgr.AppData.CorrectAnswerWaitSecs : _appDataMgr.AppData.WrongAnswerWaitSecs);
+				pbReview.Value = 100;
+				timerReview.Start();
+			} 
 			else
 			{
 				this.ReviewTimeout = DateTime.MaxValue;
 				lblMessage.Text = "Press spacebar to continue.";
 			}
 
-			lblMessage.Visible = true;
-			lblMessage.Refresh();
+            lblMessage.Visible = true;
+            lblMessage.Refresh();
 
-			this.State = ExamState.ReviewingAnswer;
+            this.State = ExamState.ReviewingAnswer;
+		}
+
+		private void timerReview_Tick(object sender, EventArgs e)
+		{
+
 		}
 
 		private void EndReviewingAnswer()
@@ -414,22 +432,25 @@ namespace KeysTeacher.Tests.VoicingTests
 		{
 			timer1.Stop();
 			EnableMidiInput(false);
-			this.State = (this.State == ExamState.ReviewingAnswer) ? ExamState.PausedReviewing : ExamState.Paused;
+			this.State = (this.State == ExamState.ReviewingAnswer) ? ExamState.ReviewingPaused : ExamState.Paused;
 			this.PauseStartTime = DateTime.Now;
 		}
 
 		private void Resume()
 		{
-			int pauseSecs = DateTime.Now.Subtract(this.PauseStartTime).Seconds;
-			this.ReviewTimeout = DateTime.Now.AddSeconds(pauseSecs);
+			int totalSecsPaused = DateTime.Now.Subtract(this.PauseStartTime).Seconds;
+
+			if (this.ReviewTimeout < DateTime.MaxValue)
+				this.ReviewTimeout = this.ReviewTimeout.AddSeconds(totalSecsPaused);
+
 			if (this.QuestionTimeout < DateTime.MaxValue)
-				this.QuestionTimeout = this.QuestionTimeout.AddSeconds(pauseSecs);
+				this.QuestionTimeout = this.QuestionTimeout.AddSeconds(totalSecsPaused);
+
 			if (this.TestTimeout < DateTime.MaxValue)
-				this.TestTimeout = this.TestTimeout.AddSeconds(pauseSecs);
-			if (this.QuestionTimeout < DateTime.MaxValue)
-				this.PauseStartTime = DateTime.MinValue;
+				this.TestTimeout = this.TestTimeout.AddSeconds(totalSecsPaused);
+
 			EnableMidiInput(true);
-			this.State = (this.State == ExamState.PausedReviewing) ? ExamState.ReviewingAnswer : ExamState.Running;
+			this.State = (this.State == ExamState.ReviewingPaused) ? ExamState.ReviewingAnswer : ExamState.Running;
 			timer1.Start();
 		}
 
@@ -463,6 +484,7 @@ namespace KeysTeacher.Tests.VoicingTests
 				// See if the question timed out
 				if (DateTime.Now > this.QuestionTimeout)
 					EndQuestion(false);
+
 				UpdateQuestionTime();
 			}
 			else if (this.State == ExamState.ReviewingAnswer)
@@ -482,13 +504,7 @@ namespace KeysTeacher.Tests.VoicingTests
 			}
 
 			// Set time displays
-			UpdateExamTime();
-		}
-
-		private void UpdateExamTime()
-		{
-			if (this.Test.ExamDurationSecs > 0)
-			{
+			if (this.Test.ExamDurationSecs > 0) {
 				int remSecs = Convert.ToInt32(this.TestTimeout.Subtract(DateTime.Now).TotalSeconds);
 				if (remSecs < 0)
 					remSecs = 0;
@@ -574,7 +590,7 @@ namespace KeysTeacher.Tests.VoicingTests
 						e.SuppressKeyPress = true;
 					}
 				}
-				else if (this.State == ExamState.Paused || this.State == ExamState.PausedReviewing)
+				else if (this.State == ExamState.Paused || this.State == ExamState.ReviewingPaused)
 				{
 					this.Resume();
 					e.SuppressKeyPress = true;
