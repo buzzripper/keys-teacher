@@ -171,6 +171,7 @@ namespace KeysTeacher.Tests.VoicingTests
 			{
 				this.Test = test;
 				lblTestName.Text = test.Name;
+				
 				StartTest();
 				return ShowDialog() == DialogResult.OK;
 			}
@@ -193,14 +194,17 @@ namespace KeysTeacher.Tests.VoicingTests
 			if (this.Test.ExamDurationSecs > 0)
 			{
 				lblExamTimeRemaining.Visible = true;
-				//lblExamTimeLbl.Visible = true;
 				lblExamTimeRemaining.Text = Utils.TimeDisplay(this.Test.ExamDurationSecs);
+			} else {
+				lblExamTimeRemaining.Text = "not timed";
 			}
+
 			if (this.Test.QuestionDurationSecs > 0)
 			{
                 lblQuestionTimeRemaining.Visible = true;
-                //lblQuestionTimeLbl.Visible = true;
                 lblQuestionTimeRemaining.Text = Utils.TimeDisplay(this.Test.QuestionDurationSecs);
+			} else {
+				lblQuestionTimeRemaining.Text = "not timed";
 			}
 
 			// Reset test variables

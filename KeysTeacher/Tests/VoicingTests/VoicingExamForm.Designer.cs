@@ -39,11 +39,12 @@
             this.picResult = new System.Windows.Forms.PictureBox();
             this.lblMessage = new System.Windows.Forms.Label();
             this.lblTestName = new System.Windows.Forms.Label();
-            this.lblSlash = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.timerReview = new System.Windows.Forms.Timer(this.components);
             this.voicingSymbol1 = new KeysTeacher.VoicingSymbol();
             this.pianoControl1 = new KeysTeacher.Controls.PianoControl();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picResult)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +54,7 @@
             this.lblQuestionTimeRemaining.BackColor = System.Drawing.Color.Transparent;
             this.lblQuestionTimeRemaining.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuestionTimeRemaining.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblQuestionTimeRemaining.Location = new System.Drawing.Point(112, 9);
+            this.lblQuestionTimeRemaining.Location = new System.Drawing.Point(116, 35);
             this.lblQuestionTimeRemaining.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblQuestionTimeRemaining.Name = "lblQuestionTimeRemaining";
             this.lblQuestionTimeRemaining.Size = new System.Drawing.Size(54, 26);
@@ -67,7 +68,7 @@
             this.lblExamTimeRemaining.BackColor = System.Drawing.Color.Transparent;
             this.lblExamTimeRemaining.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExamTimeRemaining.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblExamTimeRemaining.Location = new System.Drawing.Point(14, 9);
+            this.lblExamTimeRemaining.Location = new System.Drawing.Point(116, 9);
             this.lblExamTimeRemaining.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblExamTimeRemaining.Name = "lblExamTimeRemaining";
             this.lblExamTimeRemaining.Size = new System.Drawing.Size(54, 26);
@@ -81,7 +82,7 @@
             this.btnQuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuit.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnQuit.Image = ((System.Drawing.Image)(resources.GetObject("btnQuit.Image")));
-            this.btnQuit.Location = new System.Drawing.Point(865, 377);
+            this.btnQuit.Location = new System.Drawing.Point(865, 444);
             this.btnQuit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(372, 83);
@@ -97,7 +98,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.Silver;
-            this.panel1.Location = new System.Drawing.Point(12, 266);
+            this.panel1.Location = new System.Drawing.Point(12, 333);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1208, 0);
@@ -111,7 +112,7 @@
             this.btnPause.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnPause.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPause.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnPause.Location = new System.Drawing.Point(18, 377);
+            this.btnPause.Location = new System.Drawing.Point(18, 444);
             this.btnPause.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(833, 83);
@@ -126,7 +127,7 @@
             this.btnPlayVoicing.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnPlayVoicing.Enabled = false;
             this.btnPlayVoicing.Image = ((System.Drawing.Image)(resources.GetObject("btnPlayVoicing.Image")));
-            this.btnPlayVoicing.Location = new System.Drawing.Point(17, 198);
+            this.btnPlayVoicing.Location = new System.Drawing.Point(17, 264);
             this.btnPlayVoicing.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnPlayVoicing.Name = "btnPlayVoicing";
             this.btnPlayVoicing.Size = new System.Drawing.Size(57, 54);
@@ -143,7 +144,7 @@
             // picResult
             // 
             this.picResult.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.picResult.Location = new System.Drawing.Point(664, 66);
+            this.picResult.Location = new System.Drawing.Point(664, 132);
             this.picResult.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.picResult.Name = "picResult";
             this.picResult.Size = new System.Drawing.Size(109, 101);
@@ -156,7 +157,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMessage.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessage.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblMessage.Location = new System.Drawing.Point(285, 343);
+            this.lblMessage.Location = new System.Drawing.Point(285, 410);
             this.lblMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(764, 29);
@@ -172,33 +173,20 @@
             this.lblTestName.BackColor = System.Drawing.Color.Transparent;
             this.lblTestName.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTestName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblTestName.Location = new System.Drawing.Point(230, 2);
+            this.lblTestName.Location = new System.Drawing.Point(311, 13);
             this.lblTestName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTestName.Name = "lblTestName";
-            this.lblTestName.Size = new System.Drawing.Size(806, 36);
+            this.lblTestName.Size = new System.Drawing.Size(738, 36);
             this.lblTestName.TabIndex = 42;
             this.lblTestName.Text = "lblTestName";
             this.lblTestName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblSlash
-            // 
-            this.lblSlash.AutoSize = true;
-            this.lblSlash.BackColor = System.Drawing.Color.Transparent;
-            this.lblSlash.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSlash.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblSlash.Location = new System.Drawing.Point(76, 9);
-            this.lblSlash.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblSlash.Name = "lblSlash";
-            this.lblSlash.Size = new System.Drawing.Size(18, 26);
-            this.lblSlash.TabIndex = 43;
-            this.lblSlash.Text = "/";
             // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Location = new System.Drawing.Point(10, 41);
+            this.panel2.Location = new System.Drawing.Point(10, 67);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1233, 5);
             this.panel2.TabIndex = 55;
@@ -210,7 +198,7 @@
             // voicingSymbol1
             // 
             this.voicingSymbol1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.voicingSymbol1.Location = new System.Drawing.Point(473, 51);
+            this.voicingSymbol1.Location = new System.Drawing.Point(473, 117);
             this.voicingSymbol1.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.voicingSymbol1.Name = "voicingSymbol1";
             this.voicingSymbol1.Size = new System.Drawing.Size(160, 134);
@@ -224,25 +212,54 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pianoControl1.BassNoteOnColor = System.Drawing.Color.LightSteelBlue;
             this.pianoControl1.HighNoteID = 92;
-            this.pianoControl1.Location = new System.Drawing.Point(90, 198);
+            this.pianoControl1.Location = new System.Drawing.Point(90, 262);
             this.pianoControl1.LowNoteID = 28;
             this.pianoControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pianoControl1.Name = "pianoControl1";
             this.pianoControl1.NoteOnColor = System.Drawing.Color.DodgerBlue;
-            this.pianoControl1.Size = new System.Drawing.Size(1147, 140);
+            this.pianoControl1.Size = new System.Drawing.Size(1147, 143);
             this.pianoControl1.StickyKeys = false;
             this.pianoControl1.TabIndex = 29;
             this.pianoControl1.Text = "pianoControl1";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label1.Location = new System.Drawing.Point(43, 9);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(75, 26);
+            this.label1.TabIndex = 56;
+            this.label1.Text = "Exam:";
+            this.label1.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label2.Location = new System.Drawing.Point(13, 35);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(105, 26);
+            this.label2.TabIndex = 57;
+            this.label2.Text = "Question:";
+            this.label2.Visible = false;
+            // 
             // VoicingExamForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1255, 475);
+            this.ClientSize = new System.Drawing.Size(1255, 542);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblTestName);
             this.Controls.Add(this.voicingSymbol1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.picResult);
-            this.Controls.Add(this.lblSlash);
             this.Controls.Add(this.lblExamTimeRemaining);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.lblQuestionTimeRemaining);
@@ -282,8 +299,9 @@
 		private System.Windows.Forms.PictureBox picResult;
 		private System.Windows.Forms.Label lblMessage;
 		private System.Windows.Forms.Label lblTestName;
-        private System.Windows.Forms.Label lblSlash;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Timer timerReview;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
