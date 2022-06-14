@@ -379,7 +379,6 @@ namespace KeysTeacher.Tests.VoicingTests
 			if (_autoContinue)
 			{
 				this.ReviewTimeout = DateTime.Now.AddSeconds(wasCorrect ? _appDataMgr.AppData.CorrectAnswerWaitSecs : _appDataMgr.AppData.WrongAnswerWaitSecs);
-				timerReview.Start();
 			} 
 			else
 			{
@@ -389,20 +388,18 @@ namespace KeysTeacher.Tests.VoicingTests
 
             lblMessage.Visible = true;
             lblMessage.Refresh();
+			btnNext.Enabled = true;
 
             this.State = ExamState.ReviewingAnswer;
 		}
 
-		private void timerReview_Tick(object sender, EventArgs e)
-		{
-
-		}
-
 		private void EndReviewingAnswer()
 		{
+			btnNext.Enabled = false;
 			lblMessage.Visible = false;
 			lblMessage.Refresh();
 			this.ReviewTimeout = DateTime.MaxValue;
+
 			NextQuestion();
 		}
 
@@ -594,6 +591,12 @@ namespace KeysTeacher.Tests.VoicingTests
 				Resume();
 			}
 				
+		}
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+			if (this.State == ExamState.ReviewingAnswer)
+				EndReviewingAnswer();
 		}
     }
 }

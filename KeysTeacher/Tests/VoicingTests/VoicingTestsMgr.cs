@@ -288,6 +288,18 @@ namespace KeysTeacher.Tests.VoicingTests
 			}
 		}
 
-		#endregion
+        #endregion
+
+        private void btnDuplicate_Click(object sender, EventArgs e)
+        {
+			var voicingTest = lbxVoicingTests.SelectedItem as VoicingTest;
+			if (voicingTest == null)
+				return;
+
+			var newVoicingTest = voicingTest.Clone();
+			newVoicingTest.Name = newVoicingTest.Name + " Copy";
+
+			this.Tests.Add(newVoicingTest);
+		}
 	}
 }

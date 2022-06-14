@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VoicingLibsForm));
             this.btnSelect = new System.Windows.Forms.Button();
             this.lbxVoicings = new System.Windows.Forms.ListBox();
-            this.btnExpand = new System.Windows.Forms.Button();
             this.btnEditVoicing = new System.Windows.Forms.Button();
             this.btnDeleteVoicing = new System.Windows.Forms.Button();
             this.btnAddVoicing = new System.Windows.Forms.Button();
@@ -53,6 +52,7 @@
             // btnSelect
             // 
             this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSelect.Enabled = false;
             this.btnSelect.Location = new System.Drawing.Point(70, 452);
             this.btnSelect.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSelect.Name = "btnSelect";
@@ -69,7 +69,7 @@
             this.lbxVoicings.FormattingEnabled = true;
             this.lbxVoicings.IntegralHeight = false;
             this.lbxVoicings.ItemHeight = 20;
-            this.lbxVoicings.Location = new System.Drawing.Point(8, 77);
+            this.lbxVoicings.Location = new System.Drawing.Point(14, 77);
             this.lbxVoicings.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lbxVoicings.Name = "lbxVoicings";
             this.lbxVoicings.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
@@ -79,19 +79,6 @@
             this.lbxVoicings.DoubleClick += new System.EventHandler(this.lbxVoicings_DoubleClick);
             this.lbxVoicings.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lbxVoicings_KeyDown);
             this.lbxVoicings.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.lbxVoicings_KeyPress);
-            // 
-            // btnExpand
-            // 
-            this.btnExpand.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnExpand.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExpand.Location = new System.Drawing.Point(255, 452);
-            this.btnExpand.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnExpand.Name = "btnExpand";
-            this.btnExpand.Size = new System.Drawing.Size(32, 48);
-            this.btnExpand.TabIndex = 28;
-            this.btnExpand.Text = ">";
-            this.btnExpand.UseVisualStyleBackColor = true;
-            this.btnExpand.Click += new System.EventHandler(this.btnExpand_Click);
             // 
             // btnEditVoicing
             // 
@@ -119,6 +106,7 @@
             // 
             // btnAddVoicing
             // 
+            this.btnAddVoicing.Enabled = false;
             this.btnAddVoicing.Location = new System.Drawing.Point(304, 78);
             this.btnAddVoicing.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddVoicing.Name = "btnAddVoicing";
@@ -158,7 +146,7 @@
             this.panel1.Location = new System.Drawing.Point(12, 55);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(499, 4);
+            this.panel1.Size = new System.Drawing.Size(504, 4);
             this.panel1.TabIndex = 54;
             // 
             // btnEditLib
@@ -205,17 +193,18 @@
             // 
             this.cmbSysVoicingLibs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSysVoicingLibs.FormattingEnabled = true;
-            this.cmbSysVoicingLibs.Location = new System.Drawing.Point(304, 408);
+            this.cmbSysVoicingLibs.Location = new System.Drawing.Point(304, 400);
             this.cmbSysVoicingLibs.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbSysVoicingLibs.Name = "cmbSysVoicingLibs";
             this.cmbSysVoicingLibs.Size = new System.Drawing.Size(198, 28);
             this.cmbSysVoicingLibs.TabIndex = 58;
+            this.cmbSysVoicingLibs.SelectedIndexChanged += new System.EventHandler(this.cmbSysVoicingLibs_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(303, 380);
+            this.label1.Location = new System.Drawing.Point(303, 372);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(132, 21);
@@ -224,6 +213,7 @@
             // 
             // btnAddSystemLib
             // 
+            this.btnAddSystemLib.Enabled = false;
             this.btnAddSystemLib.Location = new System.Drawing.Point(348, 452);
             this.btnAddSystemLib.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddSystemLib.Name = "btnAddSystemLib";
@@ -263,7 +253,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(522, 512);
+            this.ClientSize = new System.Drawing.Size(527, 512);
             this.Controls.Add(this.numIncrCopies);
             this.Controls.Add(this.btnIncrCopies);
             this.Controls.Add(this.btnAddSystemLib);
@@ -278,7 +268,6 @@
             this.Controls.Add(this.btnEditVoicing);
             this.Controls.Add(this.btnDeleteVoicing);
             this.Controls.Add(this.btnAddVoicing);
-            this.Controls.Add(this.btnExpand);
             this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.lbxVoicings);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -300,7 +289,6 @@
 
 		private System.Windows.Forms.Button btnSelect;
 		private System.Windows.Forms.ListBox lbxVoicings;
-		private System.Windows.Forms.Button btnExpand;
 		private System.Windows.Forms.Button btnEditVoicing;
 		private System.Windows.Forms.Button btnDeleteVoicing;
 		private System.Windows.Forms.Button btnAddVoicing;

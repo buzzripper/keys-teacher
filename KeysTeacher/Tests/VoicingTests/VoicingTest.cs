@@ -37,5 +37,22 @@ namespace KeysTeacher.Tests.VoicingLibs
 		{
 			return this.Name;
 		}
+
+		public VoicingTest Clone()
+        {
+			var newVoicingTest = new VoicingTest();
+
+			newVoicingTest.Id = 0;
+			newVoicingTest.Name = this.Name;
+			newVoicingTest.InclBassNote = this.InclBassNote;
+			newVoicingTest.Description = this.Description;
+			newVoicingTest.QuestionDurationSecs = this.QuestionDurationSecs;	
+			newVoicingTest.ExamDurationSecs = this.ExamDurationSecs;
+
+			foreach (var voicing in this.Voicings)
+				newVoicingTest.Voicings.Add(voicing);
+
+			return newVoicingTest;
+		}
 	}
 }

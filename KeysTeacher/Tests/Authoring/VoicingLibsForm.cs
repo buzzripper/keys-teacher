@@ -13,9 +13,6 @@ namespace KeysTeacher.Tests.Authoring
     {
         #region Constants
 
-        private const int FormWidth_Collapsed = 214;
-        private const int FormWidth_Expanded = 364;
-
         #endregion
 
         #region Events
@@ -51,8 +48,6 @@ namespace KeysTeacher.Tests.Authoring
 
             _libNames = new BindingList<string>(_voicingLibRepository.GetAllVoicingLibNames());
             cmbLibNames.DataSource = _libNames;
-
-            this.ToggleExpand();
         }
 
         private void VoicingLibsForm_Load(object sender, EventArgs e)
@@ -86,14 +81,39 @@ namespace KeysTeacher.Tests.Authoring
             DeleteLib();
         }
 
+        private void cmbSysVoicingLibs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         #endregion
+
+        private VoicingLib SelectedLib
+        {
+            get { return _selectedLib; }
+            set { 
+                _selectedLib = value;
+                UpdateState();
+            }
+        }
+
+        private void UpdateState()
+        {
+            var enabled = this.SelectedLib != null;
+
+            btnAddVoicing.Enabled = enabled;
+            btnEditVoicing.Enabled = enabled;
+            btnDeleteVoicing.Enabled = enabled;
+            btnSelect.Enabled = enabled;
+            btnAddSystemLib.Enabled = enabled; 
+        }
 
         private void AddNewLib()
         {
             if (_libNameForm.Run(null) == DialogResult.OK) {
-                var _selectedLib = new VoicingLib();
-                _selectedLib.Name = _libNameForm.LibName;
-                _voicingLibRepository.Save(_selectedLib);
+                this.SelectedLib = new VoicingLib();
+                this.SelectedLib.Name = _libNameForm.LibName;
+                _voicingLibRepository.Save(this.SelectedLib);
 
                 _libNames.Add(_libNameForm.LibName);
                 cmbLibNames.SelectedItem = _libNameForm.LibName;
@@ -111,7 +131,7 @@ namespace KeysTeacher.Tests.Authoring
             if (_libNameForm.Run(oldName) == DialogResult.OK) {
                 var newName = _libNameForm.LibName;
                 _voicingLibRepository.UpdateName(oldName, newName);
-                _selectedLib.Name = newName;
+                this.SelectedLib.Name = newName;
                 var idx = _libNames.IndexOf(oldName);
                 if (idx >= 0)
                     _libNames[idx] = newName;
@@ -145,14 +165,14 @@ namespace KeysTeacher.Tests.Authoring
 
             var libName = cmbLibNames.SelectedItem.ToString();
 
-            _selectedLib = _voicingLibRepository.GetVoicingLib(libName);
-            if (_selectedLib == null) {
+            this.SelectedLib = _voicingLibRepository.GetVoicingLib(libName);
+            if (this.SelectedLib == null) {
                 _msgBox.ShowError($"Could not load library {libName}", "Error");
                 return;
             }
 
             _voicings.Clear();
-            _selectedLib.Voicings.ForEach(v => _voicings.Add(v));
+            this.SelectedLib.Voicings.ForEach(v => _voicings.Add(v));
             lbxVoicings.ResetBindings();
         }
 
@@ -194,16 +214,11 @@ namespace KeysTeacher.Tests.Authoring
             btnIncrCopies.Enabled = lbxVoicings.SelectedItems.Count == 1;
         }
 
-        private void btnExpand_Click(object sender, EventArgs e)
-        {
-            this.ToggleExpand();
-        }
-
         private void VoicingLibraryForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.E && e.Modifiers.HasFlag(Keys.Control)) {
-                ToggleExpand();
-            }
+            //if (e.KeyCode == Keys.E && e.Modifiers.HasFlag(Keys.Control)) {
+            //    ToggleExpand();
+            //}
         }
 
         #endregion
@@ -249,19 +264,6 @@ namespace KeysTeacher.Tests.Authoring
             }
         }
 
-        private bool IsExpanded => (this.Width > FormWidth_Collapsed);
-
-        private void ToggleExpand()
-        {
-            if (this.IsExpanded) {
-                btnExpand.Text = ">";
-                this.Width = FormWidth_Collapsed;
-            } else {
-                btnExpand.Text = "<";
-                this.Width = FormWidth_Expanded;
-            }
-        }
-
         #endregion
 
         private void btnAddVoicing_Click(object sender, EventArgs e)
@@ -300,7 +302,7 @@ namespace KeysTeacher.Tests.Authoring
         {
             if (_voicingEditorForm.Run(new Voicing())) {
                 _voicings.Add(_voicingEditorForm.Voicing);
-                SaveLib(_selectedLib);
+                SaveLib(this.SelectedLib);
                 lbxVoicings.ResetBindings();
             }
         }
@@ -331,7 +333,7 @@ namespace KeysTeacher.Tests.Authoring
             foreach (Voicing voicing in voicings)
                 _voicings.Remove(voicing);
 
-            SaveLib(_selectedLib);
+            SaveLib(this.SelectedLib);
         }
 
         private void SaveLib(VoicingLib voicingLib)
@@ -356,7 +358,7 @@ namespace KeysTeacher.Tests.Authoring
                     _voicings.Add(voicing);
             }
 
-            SaveLib(_selectedLib);
+            SaveLib(this.SelectedLib);
         }
 
         private void btnIncrCopies_Click(object sender, EventArgs e)
